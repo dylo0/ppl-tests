@@ -1,6 +1,6 @@
-<ion-view view-title="Chats">
+<ion-view view-title="Learn">
   <ion-content>
-    <ion-list>
+<!--     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
         <img ng-src="{{chat.face}}">
         <h2>{{chat.name}}</h2>
@@ -12,9 +12,25 @@
         </ion-option-button>
       </ion-item>
     </ion-list>
+ -->
+    <div class="list card">
+      <div class="item item-divider">Pytanie</div>
+      <div class="item item-body">
+        <div style="height: 60px">
+          {{question.q}}
+        </div>
+      </div>
+    </div>
+    
+    <div class="list card">
+      <div class="item item-body">
+        <div style="height: 100px">
+          {{question.A}}
+        </div>
+      </div>
+    </div>
+    <div style="height: 100px"></div>
 
-    <pre>
-      {{questions | json}}
-    </pre>
+    <button class="button button-block button-positive" ng-click="nextQuestion()">Next</button>
   </ion-content>
 </ion-view>

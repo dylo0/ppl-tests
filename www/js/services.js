@@ -102,7 +102,11 @@ angular.module('starter.services', [])
     questions = data;
   });
   var answeredQuestions = window.localStorage['answeredQuestions'] || [];
-  var failedQuestions = window.localStorage['failedQuestions'] || []
+  var triedQuestions = window.localStorage['triedQuestions'] || []
+
+  function getRandomArbitary (min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+  }
 
 
   return {
@@ -110,10 +114,23 @@ angular.module('starter.services', [])
       return questions;
     },
 
+    next: function (number) {
+      return questions[number + 1 % questions.length];
+    },
+
     random: function () {
-      questions.then(function (question) {
-        return questions;
-      });
+      var num = getRandomArbitary(0, questions.length);
+      var randomNum = Math.random();
+
+      if (answeredQuestions.indexOf(num) !== -1 && randomNum < 0.3 
+        || triedQuestions.indexOf(num) !== -1 && randomNum < 0.7) {
+
+        return this.random();
+      
+      } else {
+        return questions[num];
+      }
+
     },
 
     init: function () {

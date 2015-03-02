@@ -2,12 +2,12 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Chats, Questions) {
+.controller('ChatsCtrl', function($scope, $state, Chats, Questions) {
   $scope.chats = Chats.all();
-  $scope.questions = Questions.all();
+  $scope.question = Questions.random();
 
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+  $scope.nextQuestion = function () {
+    $scope.question = Questions.random();
   }
 })
 
