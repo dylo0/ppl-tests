@@ -98,18 +98,31 @@ angular.module('starter.services', [])
 
 .factory('Questions', function ($http) {
   var questions;
+  var answeredQuestions = window.localStorage['answeredQuestions'] || [];
+  var triedQuestions = window.localStorage['triedQuestions'] || []
   var promise = $http.get('questions.json').success(function(data) {
     questions = data;
   });
-  var answeredQuestions = window.localStorage['answeredQuestions'] || [];
-  var triedQuestions = window.localStorage['triedQuestions'] || []
 
   function getRandomArbitary (min, max) {
       return Math.floor(Math.random() * (max - min) + min);
-  }
+  };
 
+  function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+      }
+      return array;
+  };
 
   return {
+    init: function () {
+      return promise;
+    },
+
     all: function () {
       return questions;
     },
@@ -133,8 +146,24 @@ angular.module('starter.services', [])
 
     },
 
-    init: function () {
-      return promise;
+    randomTest: function () {
+      var randQ = this.random();
+      var answers = [{ans: 'a', msg: randQ.A},{ans: 'b', msg: randQ.B},{ans: 'c', msg: randQ.C},{ans: 'd', msg: randQ.D}];
+      var arr = shuffleArray(answers);
+      var asd = {
+        q: randQ.q,
+        ans: answers,
+        correct: answers.ANSWER
+      }
+      console.log(randQ.A)
+      console.log(asd);
+      return asd;
+
+    },
+
+    //updates answered questions array for later usage
+    updateAnswered: function (test, result) {
+      console.log('answered', result);
     }
   }
 });

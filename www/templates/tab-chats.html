@@ -13,23 +13,25 @@
       </ion-item>
     </ion-list>
  -->
-    <div class="list card">
-      <div class="item item-divider">Pytanie</div>
-      <div class="item item-body">
-        <div style="height: 60px">
-          {{question.q}}
+
+    <div style="height: 70vh">
+      <div class="list card">
+        <div class="item item-divider">Pytanie</div>
+        <div class="item item-body">
+          <div style="height: 60px">
+            {{question.q}}
+          </div>
+        </div>
+      </div>
+      
+      <div class="list card">
+        <div class="item item-body">
+          <div style="height: 100px">
+            {{question.A}}
+          </div>
         </div>
       </div>
     </div>
-    
-    <div class="list card">
-      <div class="item item-body">
-        <div style="height: 100px">
-          {{question.A}}
-        </div>
-      </div>
-    </div>
-    <div style="height: 100px"></div>
 
     <button class="button button-block button-positive" ng-click="nextQuestion()">Next</button>
   </ion-content>
