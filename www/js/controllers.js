@@ -15,18 +15,22 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('FriendsCtrl', function($scope, Questions) {
-  $scope.test = Questions.randomTest();
-  $scope.choice = 'asd';
+.controller('FriendsCtrl', function(Questions) {
+  var friends = this;
+  friends.hi = "hello!";
+  friends.test = Questions.randomTest();
+  friends.choice = {};
 
-  $scope.checkAnswer = function (test, selectedAns) {
-    $scope.answered = true;
-    $scope.answerWasCorrect = test.correct === selectedAns;
 
-    Questions.updateAnswered(test, $scope.answerWasCorrect);
+  friends.checkAnswer = function (test, selectedAns) {
+    friends.answered = true;
+    console.log(test, selectedAns);
+    friends.correct = this.test.correct === selectedAns;
+
+    Questions.updateAnswered(test, friends.correct);
   };
 
-  $scope.nextTest = function () {
+  friends.nextTest = function () {
     $scope.test = Questions.randomTest();
   };
 })

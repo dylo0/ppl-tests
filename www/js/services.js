@@ -148,15 +148,15 @@ angular.module('starter.services', [])
 
     randomTest: function () {
       var randQ = this.random();
-      var answers = [{ans: 'a', msg: randQ.A},{ans: 'b', msg: randQ.B},{ans: 'c', msg: randQ.C},{ans: 'd', msg: randQ.D}];
+      var answers = [{ans: 'A', msg: randQ.A},{ans: 'B', msg: randQ.B},{ans: 'C', msg: randQ.C},{ans: 'D', msg: randQ.D}];
       var arr = shuffleArray(answers);
       var asd = {
         q: randQ.q,
         ans: answers,
-        correct: answers.ANSWER
+        correct: randQ.ANSWER
       }
-      console.log(randQ.A)
-      console.log(asd);
+      console.log('rand', randQ.A)
+      console.log('asd', asd);
       return asd;
 
     },

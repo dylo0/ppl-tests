@@ -1,26 +1,17 @@
-<ion-view view-title="Friends">
+<ion-view view-title="Test">
   <ion-content>
-<!--     <ion-list>
-      <ion-item class="item-avatar" ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
-        <img ng-src="{{friend.face}}">
-        <h2>{{friend.name}}</h2>
-      </ion-item>
-    </ion-list> -->
-    <div class="list card">
-      <div class="item item-divider">Pytanie</div>
-      <div class="item item-body">
-        <div style="height: 60px">
-          {{test.q}}
-        </div>
+    <div class="item item-text-wrap">
+      <div style="height: 100px">
+        {{fr.test.q}}
+        
       </div>
     </div>
     
-<div style="height: 50vh">
-      <ion-radio ng-repeat="answer in test.ans" ng-model="data.choice" ng-value="answer.ans"> {{answer.msg}}</ion-radio>
-</div>
+    <div style="height: 50vh">
+      <ion-radio class="item-text-wrap" ng-class="{'correct': fr.answered && fr.correct, 'incorrect': fr.answered && !fr.correct}" ng-repeat="answer in fr.test.ans" ng-model="fr.choice" ng-value="answer.ans" ng-disabled="fr.answered"> {{answer.msg}}</ion-radio>
+    </div>
+      <button ng-if="!fr.answered" class="button button-block" ng-click="fr.checkAnswer(fr.test, fr.choice)">Check</button>
+      <button ng-if="fr.answered" class="button button-block">next Question</button>
  
-<div>{{data.choice}}</div>
-    <button class="button button-block button-positive" ng-click="checkAnswer(test, choice)">Check</button>
-
   </ion-content>
 </ion-view>

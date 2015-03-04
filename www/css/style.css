@@ -1,1 +1,7 @@
-/* Empty. Add your own CSS if you like */
+.item-radio.correct input:checked ~ .item-content {
+  /* style the item content when its checked */
+  background: #33cd5f; }
+
+.item-radio.incorrect input:checked ~ .item-content {
+  /* style the item content when its checked */
+  background: #ef473a; }
