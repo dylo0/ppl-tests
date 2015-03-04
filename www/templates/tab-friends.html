@@ -11,7 +11,7 @@
       <ion-radio class="item-text-wrap" ng-class="{'correct': fr.answered && fr.correct, 'incorrect': fr.answered && !fr.correct}" ng-repeat="answer in fr.test.ans" ng-model="fr.choice" ng-value="answer.ans" ng-disabled="fr.answered"> {{answer.msg}}</ion-radio>
     </div>
       <button ng-if="!fr.answered" class="button button-block" ng-click="fr.checkAnswer(fr.test, fr.choice)">Check</button>
-      <button ng-if="fr.answered" class="button button-block">next Question</button>
+      <button ng-if="fr.answered" class="button button-block" ng-click="fr.nextTest()">next Question</button>
  
   </ion-content>
 </ion-view>

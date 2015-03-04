@@ -155,8 +155,7 @@ angular.module('starter.services', [])
         ans: answers,
         correct: randQ.ANSWER
       }
-      console.log('rand', randQ.A)
-      console.log('asd', asd);
+      
       return asd;
 
     },

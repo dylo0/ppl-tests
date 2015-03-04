@@ -17,21 +17,21 @@ angular.module('starter.controllers', [])
 
 .controller('FriendsCtrl', function(Questions) {
   var friends = this;
-  friends.hi = "hello!";
   friends.test = Questions.randomTest();
   friends.choice = {};
 
 
   friends.checkAnswer = function (test, selectedAns) {
     friends.answered = true;
-    console.log(test, selectedAns);
     friends.correct = this.test.correct === selectedAns;
 
     Questions.updateAnswered(test, friends.correct);
   };
 
   friends.nextTest = function () {
-    $scope.test = Questions.randomTest();
+    friends.answered = false;
+    friends.choice = {};
+    friends.test = Questions.randomTest();
   };
 })
 
