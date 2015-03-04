@@ -1,13 +1,14 @@
-<ion-view view-title="Test">
+<ion-view view-title="PPL(A) Test Quiz">
   <ion-content>
     <div class="item item-text-wrap">
-      <div style="height: 100px">
+      <div>
         {{fr.test.q}}
-        
       </div>
     </div>
+      <div class="item item-divider">
     
-    <div style="height: 50vh">
+  </div>
+    <div style="min-height: 50vh">
       <ion-radio class="item-text-wrap" ng-class="{'correct': fr.answered && fr.correct, 'incorrect': fr.answered && !fr.correct}" ng-repeat="answer in fr.test.ans" ng-model="fr.choice" ng-value="answer.ans" ng-disabled="fr.answered"> 
         <span ng-style="{color: fr.answered && !fr.correct && answer.ans === fr.test.correct ? 'red' : 'black'}">{{answer.msg}}</span>
       </ion-radio>
