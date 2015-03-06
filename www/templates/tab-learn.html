@@ -1,25 +1,19 @@
 <ion-view view-title="Learn">
   <ion-content>
-
-      
-
-        <div class="item item-text-wrap">
+    <div class="item item-text-wrap">
       <div>
-       {{question.q}}
+        {{question.q}}
       </div>
     </div>
-    <div class="item item-divider">
     
-  </div>
+    <div class="item item-divider"></div>
+    
     <div style="min-height: 50vh">
-    <div class="item item-text-wrap">
-      
-            {{question.A}}
-      
+      <div class="item item-text-wrap">  
+        {{question.A}}
+      </div>
     </div>
-        </div>
 
-      
-    <button class="button button-block button-positive" ng-click="nextQuestion()">Next</button>
+    <button class="button button-block" ng-click="nextQuestion()">Next</button>
   </ion-content>
 </ion-view>
