@@ -42,7 +42,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  // Each tab has its own nav history stack:
 
   .state('tab.dash', {
     url: '/dash',
@@ -53,54 +52,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.learn', {
+      url: '/learn',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-learn': {
+          templateUrl: 'templates/tab-learn.html',
+          controller: 'LearnCtrl'
         }
       }
     })
 
-  .state('tab.friends', {
-      url: '/friends',
+  .state('tab.quiz', {
+      url: '/quiz',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl as fr'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'tab-quiz': {
+          templateUrl: 'templates/tab-quiz.html',
+          controller: 'QuizCtrl as fr'
         }
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
