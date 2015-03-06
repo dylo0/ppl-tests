@@ -62,6 +62,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+  .state('tab.questions', {
+      url: '/questions',
+      views: {
+        'tab-questions': {
+          templateUrl: 'templates/tab-questions.html',
+          controller: 'QuizCtrl as fr'
+        }
+      }
+    })
+
   .state('tab.quiz', {
       url: '/quiz',
       views: {
