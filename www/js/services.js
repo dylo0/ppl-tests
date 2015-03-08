@@ -24,6 +24,7 @@ angular.module('starter.services', [])
 
   return {
     init: function () {
+      console.log('asd');
       return promise;
     },
 
@@ -152,9 +153,26 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('Quizzes', function ($http) {
+.factory('Quizzes', function (Questions) {
   return {
+    currentQuiz: {
+      currentQuestion: 4,
+      topic: 'bezpieczeństwo',
+      questions: [1,2,3,4,5,6,7,8,9],
+    },
 
+    availableQuizzes: function () {
+      var topics = Questions.getAllTopics();
+      var quizzes = [];
+      
+      angular.forEach(topic, function(topic) {
+        if (topic.quizAvailable) {
+          quizzes.push(topic);
+        }
+      })
+
+      return quizzes;
+    }
   };
 });
 

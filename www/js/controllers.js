@@ -11,11 +11,18 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('QuizCtrl', function(Questions) {
+.controller('QuizStartCtrl', function ($scope, Questions, Quizzes, $state) {
+  if (Quizzes.currentQuiz) {
+    state.go();
+  }
+  $scope.availableQuizzes = Quizzes.getAvailableQuizzes();
+
+})
+
+.controller('QuestionsCtrl', function (Questions, Quizzes, $stateParams) {
   var quiz = this;
   quiz.test = Questions.randomTest();
   quiz.choice = {};
-
 
   quiz.checkAnswer = function (test, selectedAns) {
     quiz.answered = true;
@@ -28,6 +35,31 @@ angular.module('starter.controllers', [])
     quiz.answered = false;
     quiz.choice = {};
     quiz.test = Questions.randomTest();
+  };
+})
+
+.controller('QuizCtrl', function (Questions, Quizzes, $state, $stateParams) {
+  var quiz = this;
+  quiz.test = Questions.randomTest();
+  quiz.choice = {};
+
+  quiz.lastQuestion = $stateParams.id === Quizzes.currentQuiz.questions.length;
+
+  quiz.checkAnswer = function (test, selectedAns) {
+    quiz.answered = true;
+    quiz.correct = this.test.correct === selectedAns;
+
+    Questions.updateAnswered(test, quiz.correct);
+  };
+
+  quiz.nextTest = function () {
+    if (quiz.lastQuestion) {
+      $state.go('tab.quiz.finish');
+    } else {
+      $state.go('tab.quiz.question', {
+        id: $stateParams.id + 1
+      });
+    }
   };
 })
 

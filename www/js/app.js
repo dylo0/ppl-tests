@@ -35,9 +35,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     abstract: true,
     templateUrl: "templates/tabs.html",
     resolve: {
-      'questions':function(Questions){
+      questions: function(Questions){
         // MyServiceData will also be injectable in your controller, if you don't want this you could create a new promise with the $q service
         return Questions.init;
+        console.log('initialized');
       }
     }
   })
@@ -52,6 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+
   .state('tab.learn', {
       url: '/learn',
       views: {
@@ -67,20 +69,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'tab-questions': {
           templateUrl: 'templates/tab-questions.html',
-          controller: 'QuizCtrl as fr'
+          controller: 'QuestionsCtrl as fr'
         }
       }
     })
 
   .state('tab.quiz', {
-      url: '/quiz',
+    url: '/quiz',
+    templateUrl: 'templates/tab-quiz-start.html',
+    controller: 'QuizStartCtrl'
+  })
+
+  .state('tab.quiz.question', {
+      url: '/quiz/:id',
       views: {
         'tab-quiz': {
           templateUrl: 'templates/tab-quiz.html',
           controller: 'QuizCtrl as fr'
         }
       }
-    })
+  })
+
+  .state('tab.quiz.preview', {
+    url: '/quiz/preview/:id',
+    templateUrl: 'templates/tab-quiz.html',
+    controller: 'QuizCtrl as fr'
+  })
+
+  .state('tab.quiz.finish', {
+    url: 'quiz/fished',
+    templateUrl: 'templates/tab-quiz-finish.html',
+    controller: 'QuizCtrl as fr'
+  })
+
 
 
   // if none of the above states are matched, use this as the fallback
