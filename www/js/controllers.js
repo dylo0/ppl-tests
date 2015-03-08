@@ -31,8 +31,30 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('DashCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
+.controller('DashCtrl', function($scope, Questions, $ionicPopup, Quizzes) {
+  $scope.topics = Questions.getAllTopics();
+
+  $scope.confirmStart = function() {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Quiz in progress',
+      template: 'Are you sure you want to start new quiz? Existing quiz data will be lost'
+    });
+    confirmPopup.then(function(res) {
+      if(res) {
+        console.log('You are sure');
+      } else {
+        console.log('You are not sure');
+      }
+    });
+  };
+
+  $scope.startNewQuiz = function () {
+    if (Quizzes.quizInProgress) {
+      $scope.confirmStart();
+    } else {
+      Quizzes.startNewQuiz;
+      //should ask for topic
+      // and display start screen of quiz
+    }
   };
 });

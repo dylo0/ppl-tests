@@ -4,7 +4,7 @@ angular.module('starter.services', [])
   var questions;
   var answeredQuestions = window.localStorage['answeredQuestions'] || [];
   var triedQuestions = window.localStorage['triedQuestions'] || []
-  var promise = $http.get('questions.json').success(function(data) {
+  var promise = $http.get('data/questions.json').success(function(data) {
     questions = data;
   });
 
@@ -64,9 +64,97 @@ angular.module('starter.services', [])
 
     },
 
+    getAllTopics: function () {
+      return [
+        {
+          name: 'prawo',
+          title: 'prawo lotnicze',
+          quizAvailable: false,
+          quizCount: 30,
+          quizTime: 45
+        },
+        {
+          name: 'szybowce',
+          title: 'ogólna wiedza o szybowcu',
+          quizAvailable: false,
+          quizCount: 15,
+          quizTime: 30
+        },
+        {
+          name: 'planowanie',
+          title: 'Osiągi i planowanie lotów',
+          quizAvailable: false,
+          quizCount: 20,
+          quizTime: 60
+        },
+        {
+          name: 'medycyna',
+          title: 'Człowiek - możliwości i ograniczenia',
+          quizAvailable: false,
+          quizCount: 12,
+          quizTime: 30
+        },
+        {
+          name: 'meteorologia',
+          title: 'Meteorologia',
+          quizAvailable: false,
+          quizCount: 10,
+          quizTime: 30
+        },
+        {
+          name: 'nawigacja',
+          title: 'Nawigacja',
+          quizAvailable: false,
+          quizCount: 24,
+          quizTime: 60
+        },
+        {
+          name: 'procedury',
+          title: 'Procedury operacyjne',
+          quizAvailable: false,
+          quizCount: 12,
+          quizTime: 30
+        },
+        {
+          name: 'zasady',
+          title: 'Zasady lotu',
+          quizAvailable: false,
+          quizCount: 16,
+          quizTime: 45
+        },
+        {
+          name: 'lacznosc',
+          title: 'Łączność',
+          quizAvailable: false,
+          quizCount: 12,
+          quizTime: 30
+        },
+        {
+          name: 'bezpieczenstwo',
+          title: 'Ogólne bezpieczeństwo lotów',
+          quizAvailable: false,
+          quizCount: 16,
+          quizTime: 30
+        },
+        {
+          name: 'samolot',
+          title: 'Ogólna wiedza o samolocie',
+          quizAvailable: false,
+          quizCount: 16,
+          quizTime: 30
+        }
+      ];
+    },
     //updates answered questions array for later usage
     updateAnswered: function (test, result) {
       console.log('answered', result);
     }
   }
+})
+
+.factory('Quizzes', function ($http) {
+  return {
+
+  };
 });
+
