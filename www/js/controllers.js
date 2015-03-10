@@ -66,6 +66,8 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, Questions, $ionicPopup, Quizzes) {
   $scope.topics = Questions.getAllTopics();
 
+  $scope.prepareQuestions = Questions.prepareQuesitons;
+
   $scope.confirmStart = function() {
     var confirmPopup = $ionicPopup.confirm({
       title: 'Quiz in progress',

@@ -4,9 +4,95 @@ angular.module('starter.services', [])
   var questions;
   var answeredQuestions = window.localStorage['answeredQuestions'] || [];
   var triedQuestions = window.localStorage['triedQuestions'] || []
+  var availableQuestions;
+
+  var allTopics = [
+    {
+      name: 'prawo',
+      title: 'prawo lotnicze',
+      enabled: true,
+      quizCount: 30,
+      quizTime: 45
+    },
+    {
+      name: 'planowanie',
+      title: 'Osiągi i planowanie lotów',
+      enabled: true,
+      quizCount: 20,
+      quizTime: 60
+    },
+    {
+      name: 'medycyna',
+      title: 'Człowiek - możliwości i ograniczenia',
+      enabled: true,
+      quizCount: 12,
+      quizTime: 30
+    },
+    {
+      name: 'meteorologia',
+      title: 'Meteorologia',
+      enabled: true,
+      quizCount: 10,
+      quizTime: 30
+    },
+    {
+      name: 'nawigacja',
+      title: 'Nawigacja',
+      enabled: true,
+      quizCount: 24,
+      quizTime: 60
+    },
+    {
+      name: 'procedury',
+      title: 'Procedury operacyjne',
+      enabled: true,
+      quizCount: 12,
+      quizTime: 30
+    },
+    {
+      name: 'zasady',
+      title: 'Zasady lotu',
+      enabled: true,
+      quizCount: 16,
+      quizTime: 45
+    },
+    {
+      name: 'lacznosc',
+      title: 'Łączność',
+      enabled: true,
+      quizCount: 12,
+      quizTime: 30
+    },
+    {
+      name: 'bezpieczenstwo',
+      title: 'Ogólne bezpieczeństwo lotów',
+      enabled: true,
+      quizCount: 16,
+      quizTime: 30
+    },
+    {
+      name: 'samolot',
+      title: 'Ogólna wiedza o samolocie',
+      enabled: true,
+      quizCount: 16,
+      quizTime: 30
+    }
+  ];
+
   var promise = $http.get('data/questions_ULC.json').success(function(data) {
     questions = data;
+    prepareQuesitons();
   });
+
+  function prepareQuesitons () {
+    availableQuestions = [];
+
+    angular.forEach(allTopics, function(topic) {
+      if (topic.enabled){
+        availableQuestions = availableQuestions.concat(questions[topic.name]);
+      }
+    });
+  };
 
   function getRandomArbitary (min, max) {
       return Math.floor(Math.random() * (max - min) + min);
@@ -24,20 +110,19 @@ angular.module('starter.services', [])
 
   return {
     init: function () {
-      console.log('asd');
       return promise;
     },
 
     all: function () {
-      return questions;
+      return availableQuestions;
     },
 
     next: function (number) {
-      return questions[number + 1 % questions.length];
+      return availableQuestions[number + 1 % availableQuestions.length];
     },
 
     random: function () {
-      var num = getRandomArbitary(0, questions.length);
+      var num = getRandomArbitary(0, availableQuestions.length);
       var randomNum = Math.random();
 
       if (answeredQuestions.indexOf(num) !== -1 && randomNum < 0.3 
@@ -46,10 +131,10 @@ angular.module('starter.services', [])
         return this.random();
       
       } else {
-        return questions[num];
+        return availableQuestions[num];
       }
-
     },
+
 
     randomTest: function () {
       var randQ = this.random();
@@ -65,86 +150,10 @@ angular.module('starter.services', [])
 
     },
 
+    prepareQuesitons: prepareQuesitons,
+
     getAllTopics: function () {
-      return [
-        {
-          name: 'prawo',
-          title: 'prawo lotnicze',
-          quizAvailable: false,
-          quizCount: 30,
-          quizTime: 45
-        },
-        {
-          name: 'szybowce',
-          title: 'ogólna wiedza o szybowcu',
-          quizAvailable: false,
-          quizCount: 15,
-          quizTime: 30
-        },
-        {
-          name: 'planowanie',
-          title: 'Osiągi i planowanie lotów',
-          quizAvailable: false,
-          quizCount: 20,
-          quizTime: 60
-        },
-        {
-          name: 'medycyna',
-          title: 'Człowiek - możliwości i ograniczenia',
-          quizAvailable: false,
-          quizCount: 12,
-          quizTime: 30
-        },
-        {
-          name: 'meteorologia',
-          title: 'Meteorologia',
-          quizAvailable: false,
-          quizCount: 10,
-          quizTime: 30
-        },
-        {
-          name: 'nawigacja',
-          title: 'Nawigacja',
-          quizAvailable: false,
-          quizCount: 24,
-          quizTime: 60
-        },
-        {
-          name: 'procedury',
-          title: 'Procedury operacyjne',
-          quizAvailable: false,
-          quizCount: 12,
-          quizTime: 30
-        },
-        {
-          name: 'zasady',
-          title: 'Zasady lotu',
-          quizAvailable: false,
-          quizCount: 16,
-          quizTime: 45
-        },
-        {
-          name: 'lacznosc',
-          title: 'Łączność',
-          quizAvailable: false,
-          quizCount: 12,
-          quizTime: 30
-        },
-        {
-          name: 'bezpieczenstwo',
-          title: 'Ogólne bezpieczeństwo lotów',
-          quizAvailable: false,
-          quizCount: 16,
-          quizTime: 30
-        },
-        {
-          name: 'samolot',
-          title: 'Ogólna wiedza o samolocie',
-          quizAvailable: false,
-          quizCount: 16,
-          quizTime: 30
-        }
-      ];
+      return allTopics;
     },
     //updates answered questions array for later usage
     updateAnswered: function (test, result) {
@@ -166,7 +175,7 @@ angular.module('starter.services', [])
       var quizzes = [];
       
       angular.forEach(topic, function(topic) {
-        if (topic.quizAvailable) {
+        if (topic.enabled) {
           quizzes.push(topic);
         }
       })

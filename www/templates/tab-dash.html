@@ -9,7 +9,7 @@
         <ion-item class="item-divider">
           Learning resources
         </ion-item>
-          <ion-checkbox ng-repeat="topic in topics" ng-model="topic.selected">{{topic.title}}</ion-checkbox>
+          <ion-checkbox ng-repeat="topic in topics" ng-model="topic.enabled" ng-change="prepareQuestions()">{{topic.title}}</ion-checkbox>
       </div>
 
       <div class="card">

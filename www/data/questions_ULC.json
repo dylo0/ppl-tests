@@ -1,4 +1,5 @@
-[               
+{
+"prawo":   [               
     {
         "id": 1,
         "ANSWER": "A",
@@ -5097,7 +5098,9 @@
         "B": "wysokości bezwzględnej 1250 m",
         "C": "wysokości bezwzględnej 1450     ",
         "D": "wysokości bezwzględnej 1550 m"
-    },
+    }],
+
+"samolot": [    
     {
         "id": 511,
         "code": "PL020-0001",
@@ -7225,7 +7228,7 @@
         "q": "Zabrania się włączać transponder z ustawionymi:",
         "A": "Kodami ratunkowymi.",
         "B": "Kodami zalecanymi dla IFR.",
-        "C": "Kodami zalecanymi dla VF      ",
+        "C": "Kodami zalecanymi dla VFR",
         "D": "Wszystkie odpowiedzi są poprawne"
     },
     {
@@ -7407,8 +7410,36 @@
         "B": "kursu geograficznego",
         "C": "prędkości lotu",
         "D": "przechylenia samolotu"
-    },
-    {
+    }],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"planowanie": [
+{
         "id": 742,
         "ANSWER": "A",
         "code": "PL030-0001",
@@ -7957,7 +7988,18 @@
         "B": "Gdy zaistnieje, wymaga takiego samego działania ze strony pilota – oddania steru od siebie, dodania mocy.",
         "C": "Występuje tylko na dużych samolotach pasażerskich.",
         "D": "Jest najbardziej niebezpieczne przy dużych prędkościach lotu, kiedy skuteczność sterowania pochyleniem jest największa."
-    },
+    }],
+
+
+
+
+
+
+
+
+
+
+"medycyna":    [
     {
         "id": 797,
         "ANSWER": "A",
@@ -8423,10 +8465,10 @@
         "ANSWER": "A",
         "code": "Pq040-0057",
         "q": "Do jAkiej ostrości wzroku może pilot wykonywać loty bez szkieł korekcyjnych :",
-        "A": "",
-        "B": "",
-        "C": "",
-        "D": ""
+        "A": "0,8",
+        "B": "0,6",
+        "C": "0,7",
+        "D": "0,9"
     },
     {
         "id": 844,
@@ -11028,7 +11070,9 @@
         "B": "kannabinoli (marihuana, haszysz)",
         "C": "morfiny",
         "D": "heroiny"
-    },
+    }],
+    
+"meteorologia": [
     {
         "id": 1104,
         "ANSWER": "A",
@@ -12419,7 +12463,9 @@
         "B": "Prostopadle",
         "C": "Pod kątem 3      ",
         "D": "Pod kątem 60°"
-    },
+    }],
+
+"nawigacja":  [
     {
         "id": 1243,
         "ANSWER": "A",
@@ -14323,7 +14369,21 @@
         "B": "radiostacja DCF-77 we Frankfurcie,",
         "C": "wewnętrzny zegar kwarcowy odbiorni           ",
         "D": "żadna z odpowiedzi nie jest prawdziwa"
-    },
+    }],
+
+
+
+
+
+
+
+
+
+
+
+
+
+"procedury":    [
     {
         "id": 1434,
         "ANSWER": "A",
@@ -14421,7 +14481,7 @@
         "q": "Użytkownik statku powietrznego, organ ruchu lotniczego, zarządzający lotniskiem są zobowiązani powiadomić PKBWL o zdarzeniu lotniczym w nieprzekraczalnym czasie:",
         "A": "72 godziny",
         "B": "48 godzin",
-        "C": "24 godzi      ",
+        "C": "24 godzin",
         "D": "96 godzin"
     },
     {
@@ -15063,7 +15123,9 @@
         "B": "organ kontroli ruchu lotniczego, po wylądowaniu",
         "C": "władze lokalne",
         "D": "Urząd Lotnictwa Cywilnego"
-    },
+    }],
+
+"zasady": [
     {
         "id": 1508,
         "q": "Czy profile klasyczne są dużo bardziej „wrażliwe” na zabrudzenia od profili laminarnych?",
@@ -18405,7 +18467,9 @@
         "C": "Wydłużenie długości startu i lądowania - spadek prędkości minimalnej - spadek maksymalnej prędkości wznoszenia. ",
         "D": "Wydłużenie długości staru i lądowania - wzrost prędkości minimalnej - wzrost maksymalnej prędkości wznoszenia. ",
         "ANSWER": "A"
-    },
+    }],
+
+"lacznosc": [
     {
         "id": 1879,
         "ANSWER": "A",
@@ -18645,7 +18709,9 @@
         "B": "101,5 MHz",
         "C": "500 k     ",
         "D": "2128 kHz"
-    },
+    }],
+
+"bezpieczenstwo": [
     {
         "id": 1903,
         "ANSWER": "A",
@@ -19587,3 +19653,4 @@
         "D": "rejoni"
     }
 ]
+}
