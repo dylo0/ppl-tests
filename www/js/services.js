@@ -4,7 +4,7 @@ angular.module('starter.services', [])
   var questions;
   var answeredQuestions = window.localStorage['answeredQuestions'] || [];
   var triedQuestions = window.localStorage['triedQuestions'] || []
-  var promise = $http.get('data/questions.json').success(function(data) {
+  var promise = $http.get('data/questions_ULC.json').success(function(data) {
     questions = data;
   });
 
