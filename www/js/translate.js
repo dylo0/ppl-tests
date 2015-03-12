@@ -13,7 +13,11 @@ angular.module('pplTester')
     	example_questions: "Example questions",
     	check: "Check answer",
     	questions: "Questions",
-    	quiz: "Quiz"
+    	quiz: "Quiz",
+        quiz_in_progress: "Quiz in progress",
+        want_to_restart: "Do you want to restart current quiz?",
+        restart_quiz: "Restart quiz",
+        return_to_quiz: "Return to quiz"
     });
  
     $translateProvider.translations('pl', {
@@ -29,7 +33,11 @@ angular.module('pplTester')
     	example_questions: "Przykładowe pytania",
     	check: "Sprawdź odpowiedź",
     	questions: "Pytania",
-    	quiz: "Test"
+    	quiz: "Test",
+        quiz_in_progress: "Test w toku",
+        want_to_restart: "Czy chcesz rozpocząć od nowa?",
+        restart_quiz: "Restartuj",
+        return_to_quiz: "Powróć do quizu"
     });
 
 })

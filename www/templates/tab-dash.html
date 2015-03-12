@@ -2,8 +2,8 @@
   <ion-content>
     <ion-list>
       <ion-item>
-        <a href="#/tab/quiz" class="button button-calm button-block">
-        {{ 'new_quiz' | translate}}
+        <a ng-click="startNewQuiz()" class="button button-calm button-block">
+        {{ 'new_quiz' | translate }}
         </a>
       </ion-item>
       
@@ -11,12 +11,12 @@
         <ion-item class="item-divider">
           {{ 'learning_resources' | translate }}
         </ion-item>
-          <ion-checkbox ng-repeat="topic in topics" ng-model="topic.enabled" ng-change="prepareQuestions()">{{topic.title}}</ion-checkbox>
+          <ion-checkbox ng-repeat="topic in topics" ng-model="topic.enabled" ng-change="prepareQuestions()">{{ topic.title }}</ion-checkbox>
       </div>
 
       <div class="card">
         <ion-item class="item-divider">
-          {{'statistics' | translate}}
+          {{'statistics' | translate }}
         </ion-item>
         
         <ion-item >
@@ -41,11 +41,11 @@
         </ion-item>
 
         <ion-item class="item-divider">
-          {{ 'quizzes'  | translate}}
+          {{ 'quizzes'  | translate }}
         </ion-item>
         
         <ion-item ng-repeat="topic in topics">
-          {{topic.title}}
+          {{ topic.title }}
           <span class="item-note">
             12%
           </span>

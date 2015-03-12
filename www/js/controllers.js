@@ -19,9 +19,9 @@ angular.module('pplTester.controllers', [])
 
 .controller('QuizStartCtrl', function ($scope, Questions, Quizzes, $state) {
   if (Quizzes.currentQuiz) {
-    state.go();
+    // $state.go();
   }
-  $scope.availableQuizzes = Quizzes.getAvailableQuizzes();
+  // $scope.availableQuizzes = Quizzes.getAvailableQuizzes();
 
 })
 
@@ -75,32 +75,36 @@ angular.module('pplTester.controllers', [])
   };
 })
 
-.controller('DashCtrl', function($scope, Questions, $ionicPopup, Quizzes) {
-  $scope.topics = Questions.getAllTopics();
+.controller('DashCtrl', function($scope, Questions, $ionicPopup, Quizzes, $translate, $state) {
+    $scope.topics = Questions.getAllTopics();
+    $scope.prepareQuestions = Questions.prepareQuesitons;
 
-  $scope.prepareQuestions = Questions.prepareQuesitons;
+    $scope.confirmStart = function() {
+      $translate(['quiz_in_progress', 'want_to_restart', 'restart_quiz', 'return_to_quiz'])
+      .then(function(translations) {
+          var confirmPopup = $ionicPopup.confirm({
+              title: translations['quiz_in_progress'],
+              template: translations['want_to_restart'],
+              okText: translations['restart_quiz'],
+              cancelText: translations['return_to_quiz'],
+              okType: 'button-assertive'
+          });
 
-  $scope.confirmStart = function() {
-    var confirmPopup = $ionicPopup.confirm({
-      title: 'Quiz in progress',
-      template: 'Are you sure you want to start new quiz? Existing quiz data will be lost'
-    });
-    confirmPopup.then(function(res) {
-      if(res) {
-        console.log('You are sure');
-      } else {
-        console.log('You are not sure');
-      }
-    });
-  };
+          confirmPopup.then(function(res) {
+              if(res) {
+                $state.go('tab.quiz.new');
+              } else {
+                $state.go('tab.quiz', {id: Quizzes.currentQuestion.number});
+              }
+          });
+      });
+    };
 
-  $scope.startNewQuiz = function () {
-    if (Quizzes.quizInProgress) {
-      $scope.confirmStart();
-    } else {
-      Quizzes.startNewQuiz;
-      //should ask for topic
-      // and display start screen of quiz
-    }
-  };
+    $scope.startNewQuiz = function () {
+        if (Quizzes.quizInProgress) {
+            $scope.confirmStart();
+        } else {
+            $state.go('tab.quiz.new')
+        }
+    };
 });

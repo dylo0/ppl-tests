@@ -40,13 +40,10 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
     templateUrl: "templates/tabs.html",
     resolve: {
       questions: function(Questions){
-        // MyServiceData will also be injectable in your controller, if you don't want this you could create a new promise with the $q service
         return Questions.init;
-        console.log('initialized');
       }
     }
   })
-
 
   .state('tab.dash', {
     url: '/dash',
@@ -80,30 +77,33 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
 
   .state('tab.quiz', {
     url: '/quiz',
-    templateUrl: 'templates/tab-quiz-start.html',
-    controller: 'QuizStartCtrl'
+    views: {
+      'tab-quiz': {
+        templateUrl: 'templates/tab-quiz.html',
+        controller: 'QuizStartCtrl'
+      }
+      
+    }
   })
 
   .state('tab.quiz.question', {
       url: '/quiz/:id',
       views: {
-        'tab-quiz': {
-          templateUrl: 'templates/tab-quiz.html',
+        'tab-quizas': {
+          templateUrl: 'templates/tab-quiz-question.html',
           controller: 'QuizCtrl as fr'
         }
       }
   })
 
-  .state('tab.quiz.preview', {
-    url: '/quiz/preview/:id',
-    templateUrl: 'templates/tab-quiz.html',
-    controller: 'QuizCtrl as fr'
-  })
-
-  .state('tab.quiz.finish', {
-    url: 'quiz/fished',
-    templateUrl: 'templates/tab-quiz-finish.html',
-    controller: 'QuizCtrl as fr'
+  .state('tab.quiz.summary', {
+    url: 'quiz/summary',
+    views: {
+      'tab-quiza': {
+        templateUrl: 'templates/tab-quiz-summary.html',
+        controller: 'QuizCtrl as fr'
+      }
+    }
   })
 
 
