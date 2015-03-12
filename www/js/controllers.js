@@ -8,6 +8,12 @@ angular.module('starter.controllers', [])
   $scope.nextQuestion = function () {
     $scope.question = Questions.random();
   }
+
+  $scope.$on( "$ionicView.enter", function() {
+      if (Questions.changed()){
+          $scope.nextQuestion();
+      }
+  });
 })
 
 
@@ -19,7 +25,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('QuestionsCtrl', function (Questions, Quizzes, $stateParams) {
+.controller('QuestionsCtrl', function ($scope, Questions, Quizzes, $stateParams) {
   var quiz = this;
   quiz.test = Questions.randomTest();
   quiz.choice = {};
@@ -36,6 +42,12 @@ angular.module('starter.controllers', [])
     quiz.choice = {};
     quiz.test = Questions.randomTest();
   };
+
+  $scope.$on( "$ionicView.enter", function() {
+      if (Questions.changed() ) {
+        quiz.test = Questions.randomTest();
+      }
+  });
 })
 
 .controller('QuizCtrl', function (Questions, Quizzes, $state, $stateParams) {

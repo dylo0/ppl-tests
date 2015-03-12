@@ -5,79 +5,74 @@ angular.module('starter.services', [])
   var answeredQuestions = window.localStorage['answeredQuestions'] || [];
   var triedQuestions = window.localStorage['triedQuestions'] || []
   var availableQuestions;
+  var questionsChanged = true;
 
   var allTopics = [
     {
       name: 'prawo',
       title: 'prawo lotnicze',
-      enabled: true,
       quizCount: 30,
       quizTime: 45
     },
     {
       name: 'planowanie',
       title: 'Osiągi i planowanie lotów',
-      enabled: true,
       quizCount: 20,
       quizTime: 60
     },
     {
       name: 'medycyna',
       title: 'Człowiek - możliwości i ograniczenia',
-      enabled: true,
       quizCount: 12,
       quizTime: 30
     },
     {
       name: 'meteorologia',
       title: 'Meteorologia',
-      enabled: true,
       quizCount: 10,
       quizTime: 30
     },
     {
       name: 'nawigacja',
       title: 'Nawigacja',
-      enabled: true,
       quizCount: 24,
       quizTime: 60
     },
     {
       name: 'procedury',
       title: 'Procedury operacyjne',
-      enabled: true,
       quizCount: 12,
       quizTime: 30
     },
     {
       name: 'zasady',
       title: 'Zasady lotu',
-      enabled: true,
       quizCount: 16,
       quizTime: 45
     },
     {
       name: 'lacznosc',
       title: 'Łączność',
-      enabled: true,
       quizCount: 12,
       quizTime: 30
     },
     {
       name: 'bezpieczenstwo',
       title: 'Ogólne bezpieczeństwo lotów',
-      enabled: true,
       quizCount: 16,
       quizTime: 30
     },
     {
       name: 'samolot',
       title: 'Ogólna wiedza o samolocie',
-      enabled: true,
       quizCount: 16,
       quizTime: 30
     }
   ];
+
+  angular.forEach(allTopics, function(topic) {
+    topic.enabled = true;
+  })
 
   var promise = $http.get('data/questions_ULC.json').success(function(data) {
     questions = data;
@@ -86,6 +81,7 @@ angular.module('starter.services', [])
 
   function prepareQuesitons () {
     availableQuestions = [];
+    questionsChanged = true;
 
     angular.forEach(allTopics, function(topic) {
       if (topic.enabled){
@@ -118,10 +114,13 @@ angular.module('starter.services', [])
     },
 
     next: function (number) {
+      questionsChanged = false;
       return availableQuestions[number + 1 % availableQuestions.length];
     },
 
     random: function () {
+      questionsChanged = false;
+
       var num = getRandomArbitary(0, availableQuestions.length);
       var randomNum = Math.random();
 
@@ -133,6 +132,10 @@ angular.module('starter.services', [])
       } else {
         return availableQuestions[num];
       }
+    },
+
+    changed: function () {
+      return questionsChanged;
     },
 
 
