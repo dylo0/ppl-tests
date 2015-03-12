@@ -6,15 +6,15 @@
       </div>
     </div>
     <div class="item item-divider">
-    
+
   </div>
     <div style="min-height: 50vh">
       <ion-radio class="item-text-wrap" ng-class="{'correct': fr.answered && fr.correct, 'incorrect': fr.answered && !fr.correct}" ng-repeat="answer in fr.test.ans" ng-model="fr.choice" ng-value="answer.ans" ng-disabled="fr.answered"> 
         <span ng-style="{color: fr.answered && !fr.correct && answer.ans === fr.test.correct ? 'red' : 'black'}">{{answer.msg}}</span>
       </ion-radio>
     </div>
-      <button ng-if="!fr.answered" class="button button-block" ng-click="fr.checkAnswer(fr.test, fr.choice)">Check</button>
-      <button ng-if="fr.answered" class="button button-block" ng-click="fr.nextTest()">Next</button>
+      <button ng-if="!fr.answered" class="button button-block" ng-click="fr.checkAnswer(fr.test, fr.choice)">{{'check' | translate}}</button>
+      <button ng-if="fr.answered" class="button button-block" ng-click="fr.nextTest()">{{'next_question' | translate}}</button>
  
   </ion-content>
 </ion-view>

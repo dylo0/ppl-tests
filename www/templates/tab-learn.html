@@ -1,5 +1,5 @@
 
-<ion-view title="Learn">
+<ion-view title="{{'learn' | translate}}">
   <ion-content>
     <div class="item item-text-wrap">
       <div>
@@ -15,6 +15,8 @@
       </div>
     </div>
 
-    <button class="button button-block" ng-click="nextQuestion()">Next</button>
+    <button class="button button-block" ng-click="nextQuestion()">
+      {{'next_question' | translate}} 
+    </button>
   </ion-content>
 </ion-view>

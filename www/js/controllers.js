@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('pplTester.controllers', [])
 
 
 .controller('LearnCtrl', function($scope, $state, Questions) {

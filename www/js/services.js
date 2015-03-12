@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('pplTester.services', [])
 
 .factory('Questions', function ($http) {
   var questions;
@@ -137,7 +137,6 @@ angular.module('starter.services', [])
     changed: function () {
       return questionsChanged;
     },
-
 
     randomTest: function () {
       var randQ = this.random();
