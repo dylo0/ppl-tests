@@ -17,7 +17,12 @@ angular.module('pplTester')
         quiz_in_progress: "Quiz in progress",
         want_to_restart: "Do you want to restart current quiz?",
         restart_quiz: "Restart quiz",
-        return_to_quiz: "Return to quiz"
+        return_to_quiz: "Return to quiz",
+        choose_quiz_topic: "Choose quiz topic",
+        quiz_details: "Quiz details",
+        time: "Time",
+        number_of_questions: "Number of questions",
+        start_quiz: "Start quiz!"
     });
  
     $translateProvider.translations('pl', {
@@ -37,7 +42,12 @@ angular.module('pplTester')
         quiz_in_progress: "Test w toku",
         want_to_restart: "Czy chcesz rozpocząć od nowa?",
         restart_quiz: "Restartuj",
-        return_to_quiz: "Powróć do quizu"
+        return_to_quiz: "Powróć do testu",
+        choose_quiz_topic: "Wybierz temat",
+        quiz_details: "Informacje",
+        time: "Czas",
+        number_of_questions: "Ilość pytań",
+        start_quiz: "Rozpocznij test!"
     });
 
 })

@@ -172,11 +172,11 @@ angular.module('pplTester.services', [])
       questions: [1,2,3,4,5,6,7,8,9],
     },
 
-    availableQuizzes: function () {
+    getAllTopics: function () {
       var topics = Questions.getAllTopics();
       var quizzes = [];
       
-      angular.forEach(topic, function(topic) {
+      angular.forEach(topics, function(topic) {
         if (topic.enabled) {
           quizzes.push(topic);
         }

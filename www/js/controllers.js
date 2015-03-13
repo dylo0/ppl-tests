@@ -57,6 +57,8 @@ angular.module('pplTester.controllers', [])
 
   quiz.lastQuestion = $stateParams.id === Quizzes.currentQuiz.questions.length;
 
+  quiz.topics = Quizzes.getAllTopics();
+
   quiz.checkAnswer = function (test, selectedAns) {
     quiz.answered = true;
     quiz.correct = this.test.correct === selectedAns;

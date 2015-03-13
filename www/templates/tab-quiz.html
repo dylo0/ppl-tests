@@ -1,20 +1,42 @@
-<ion-view view-title="PPL(A) Test Quiz [12/25]">
+<ion-view view-title="{{ 'choose_quiz_topic' | translate }}">
   <ion-content>
-    <div class="item item-text-wrap">
-      <div>
-        {{fr.test.q}}
-      </div>
-    </div>
-    <div class="item item-divider">
 
-  </div>
-    <div style="min-height: 50vh">
-      <ion-radio class="item-text-wrap" ng-class="{'correct': fr.answered && fr.correct, 'incorrect': fr.answered && !fr.correct}" ng-repeat="answer in fr.test.ans" ng-model="fr.choice" ng-value="answer.ans" ng-disabled="fr.answered"> 
-        <span ng-style="{color: fr.answered && !fr.correct && answer.ans === fr.test.correct ? 'red' : 'black'}">{{answer.msg}}</span>
-      </ion-radio>
-    </div>
-      <button ng-if="!fr.answered" class="button button-block" ng-click="fr.checkAnswer(fr.test, fr.choice)">{{'check' | translate}}</button>
-      <button ng-if="fr.answered" class="button button-block" ng-click="fr.nextTest()">{{'next_question' | translate}}</button>
- 
+    <ion-radio class="item-text-wrap"  ng-repeat="topic in fr.topics" ng-model="fr.choosenTopic" ng-value="topic"> {{topic.title}} </ion-radio>
+
+
+<div class="card" ng-if="fr.choosenTopic.name">
+
+    <ion-item class="item-divider">
+      {{ 'quiz_details' | translate }}
+    </ion-item>
+
+    <ion-item>
+        {{ 'quiz' | translate }}
+        <span class="item-note">
+            {{ fr.choosenTopic.title }}
+        </span>
+    </ion-item>
+
+    <ion-item>
+        {{ 'time' | translate }}
+        <span class="item-note">
+            {{ fr.choosenTopic.quizTime }} min
+        </span>
+    </ion-item>
+
+    <ion-item>
+        {{ 'number_of_questions' | translate }}
+        <span class="item-note">
+            {{ fr.choosenTopic.quizCount }}
+        </span>
+    </ion-item>
+
+<ion-item>
+    <button class="button button-positive button-block">
+        {{ 'start_quiz' | translate }} 
+    </button>
+</ion-item>
+</div>
   </ion-content>
 </ion-view>
+

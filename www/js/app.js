@@ -80,7 +80,7 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
     views: {
       'tab-quiz': {
         templateUrl: 'templates/tab-quiz.html',
-        controller: 'QuizStartCtrl'
+        controller: 'QuizCtrl as fr'
       }
       
     }
