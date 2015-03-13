@@ -1,42 +1,41 @@
 <ion-view view-title="{{ 'choose_quiz_topic' | translate }}">
   <ion-content>
 
-    <ion-radio class="item-text-wrap"  ng-repeat="topic in fr.topics" ng-model="fr.choosenTopic" ng-value="topic"> {{topic.title}} </ion-radio>
+    <ion-radio class="item-text-wrap"  ng-repeat="topic in fr.topics" ng-model="fr.choosenTopic" ng-value="topic" ng-change="fr.scrollBottom()"> {{topic.title}} </ion-radio>
 
+    <div class="card" ng-if="fr.choosenTopic.name">
 
-<div class="card" ng-if="fr.choosenTopic.name">
+        <ion-item class="item-divider">
+            {{ 'quiz_details' | translate }}
+        </ion-item>
 
-    <ion-item class="item-divider">
-      {{ 'quiz_details' | translate }}
-    </ion-item>
+        <ion-item>
+            {{ 'quiz' | translate }}
+            <span class="item-note">
+                {{ fr.choosenTopic.title }}
+            </span>
+        </ion-item>
 
-    <ion-item>
-        {{ 'quiz' | translate }}
-        <span class="item-note">
-            {{ fr.choosenTopic.title }}
-        </span>
-    </ion-item>
+        <ion-item>
+            {{ 'time' | translate }}
+            <span class="item-note">
+                {{ fr.choosenTopic.quizTime }} min
+            </span>
+        </ion-item>
 
-    <ion-item>
-        {{ 'time' | translate }}
-        <span class="item-note">
-            {{ fr.choosenTopic.quizTime }} min
-        </span>
-    </ion-item>
+        <ion-item>
+            {{ 'number_of_questions' | translate }}
+            <span class="item-note">
+                {{ fr.choosenTopic.quizCount }}
+            </span>
+        </ion-item>
 
-    <ion-item>
-        {{ 'number_of_questions' | translate }}
-        <span class="item-note">
-            {{ fr.choosenTopic.quizCount }}
-        </span>
-    </ion-item>
-
-<ion-item>
-    <button class="button button-positive button-block">
-        {{ 'start_quiz' | translate }} 
-    </button>
-</ion-item>
-</div>
+        <ion-item>
+            <button class="button button-positive button-block">
+                {{ 'start_quiz' | translate }} 
+            </button>
+        </ion-item>
+    </div>
   </ion-content>
 </ion-view>
 

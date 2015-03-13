@@ -50,7 +50,7 @@ angular.module('pplTester.controllers', [])
   });
 })
 
-.controller('QuizCtrl', function (Questions, Quizzes, $state, $stateParams) {
+.controller('QuizCtrl', function (Questions, Quizzes, $state, $stateParams, $ionicScrollDelegate) {
   var quiz = this;
   quiz.test = Questions.randomTest();
   quiz.choice = {};
@@ -58,6 +58,10 @@ angular.module('pplTester.controllers', [])
   quiz.lastQuestion = $stateParams.id === Quizzes.currentQuiz.questions.length;
 
   quiz.topics = Quizzes.getAllTopics();
+
+  quiz.scrollBottom = function () {
+      $ionicScrollDelegate.scrollBottom(true);
+  }
 
   quiz.checkAnswer = function (test, selectedAns) {
     quiz.answered = true;
