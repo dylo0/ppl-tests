@@ -22,7 +22,8 @@ angular.module('pplTester')
         quiz_details: "Quiz details",
         time: "Time",
         number_of_questions: "Number of questions",
-        start_quiz: "Start quiz!"
+        start_quiz: "Start quiz!",
+        back: 'Back'
     });
  
     $translateProvider.translations('pl', {
@@ -47,7 +48,8 @@ angular.module('pplTester')
         quiz_details: "Informacje",
         time: "Czas",
         number_of_questions: "Ilość pytań",
-        start_quiz: "Rozpocznij test!"
+        start_quiz: "Rozpocznij test!",
+        back: "Powrót"
     });
 
 })

@@ -81,9 +81,23 @@ angular.module('pplTester.controllers', [])
   };
 })
 
-.controller('DashCtrl', function($scope, Questions, $ionicPopup, Quizzes, $translate, $state) {
+.controller('DashCtrl', function($scope, Questions, $ionicPopup, Quizzes, $translate, $state, $ionicModal) {
     $scope.topics = Questions.getAllTopics();
     $scope.prepareQuestions = Questions.prepareQuesitons;
+
+    $ionicModal.fromTemplateUrl('stats-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.statsModal = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('resources-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+    });
 
     $scope.confirmStart = function() {
       $translate(['quiz_in_progress', 'want_to_restart', 'restart_quiz', 'return_to_quiz'])
@@ -113,4 +127,26 @@ angular.module('pplTester.controllers', [])
             $state.go('tab.quiz.new')
         }
     };
+
+    $scope.showResources = function() {
+        $scope.modal.show();
+    };
+    
+    $scope.closeResources = function() {
+        $scope.modal.hide();
+    };
+
+    $scope.showStats = function() {
+        $scope.statsModal.show();
+    };
+    
+    $scope.closeStats = function() {
+        $scope.statsModal.hide();
+    };
+    
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });
+
+
 });
