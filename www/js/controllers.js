@@ -96,7 +96,14 @@ angular.module('pplTester.controllers', [])
         scope: $scope,
         animation: 'slide-in-up'
       }).then(function(modal) {
-        $scope.modal = modal;
+        $scope.resourcesModal = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('about-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.aboutModal = modal;
     });
 
     $scope.confirmStart = function() {
@@ -128,21 +135,37 @@ angular.module('pplTester.controllers', [])
         }
     };
 
-    $scope.showResources = function() {
-        $scope.modal.show();
-    };
-    
-    $scope.closeResources = function() {
-        $scope.modal.hide();
-    };
+    $scope.showModal = function(modal) {
+      modal.show();
+    }
 
-    $scope.showStats = function() {
-        $scope.statsModal.show();
-    };
+    $scope.closeModal = function(modal) {
+      modal.hide();
+    }
+
+    // $scope.showResources = function() {
+    //     $scope.resourcesModal.show();
+    // };
     
-    $scope.closeStats = function() {
-        $scope.statsModal.hide();
-    };
+    // $scope.closeResources = function() {
+    //     $scope.resourcesModal.hide();
+    // };
+
+    // $scope.showStats = function() {
+    //     $scope.statsModal.show();
+    // };
+    
+    // $scope.closeStats = function() {
+    //     $scope.statsModal.hide();
+    // };
+
+    // $scope.showStats = function() {
+    //     $scope.aboutModal.show();
+    // };
+    
+    // $scope.closeStats = function() {
+    //     $scope.aboutModal.hide();
+    // };
     
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
