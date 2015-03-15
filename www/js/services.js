@@ -158,14 +158,14 @@ angular.module('pplTester.services', [])
     },
 
     getQuestions: function (topic, count) {
-      if (count > questions.topic.length) {
+      if (count > questions[topic].length) {
           return console.error("Too many questions requested");
       }
 
       var allTopicQuestions = angular.copy(questions[topic]);
       shuffleArray(allTopicQuestions);
 
-      var requestedQuestions = count ? topicQuestions.slice(0, count) : topicQuestions;
+      var requestedQuestions = count ? allTopicQuestions.slice(0, count) : allTopicQuestions;
       var preparedQuestions = [];
 
       angular.forEach(requestedQuestions, function(question) {
@@ -225,7 +225,7 @@ angular.module('pplTester.services', [])
       $state.go('tab.quiz.summary');
     },
 
-    startQuiz: function (quiz) {
+    startNewQuiz: function (quiz) {
       if (endTimeout) {
         $timeout.cancel(endTimeout);
       }
@@ -236,14 +236,20 @@ angular.module('pplTester.services', [])
 
 
       currentQuiz = {
-        ended: false
+          currentQuestion: 4,
+          topic: quiz.topic,
+          count: quiz.count,
+          questions: Questions.getQuestions(quiz.name, quiz.count),
+          answers: []
       }
+
+      console.info(currentQuiz);
     },
 
     checkAnswer: function (idx, ans) {
       currentQuiz.answers[idx] = ans;
     },
-    
+
     currentQuiz: currentQuiz
 
 

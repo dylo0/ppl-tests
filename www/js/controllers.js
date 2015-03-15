@@ -70,6 +70,11 @@ angular.module('pplTester.controllers', [])
     Questions.updateAnswered(test, quiz.correct);
   };
 
+  quiz.startQuiz = function (quiz) {
+    Quizzes.startNewQuiz(quiz);
+    //$state.go('tab.quiz.question', {id: 0});
+  };
+
   quiz.nextTest = function () {
     if (quiz.lastQuestion) {
       Quizzes.endQuiz();
