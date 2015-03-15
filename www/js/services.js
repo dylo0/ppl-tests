@@ -11,62 +11,62 @@ angular.module('pplTester.services', [])
     {
       name: 'prawo',
       title: 'prawo lotnicze',
-      quizCount: 30,
-      quizTime: 45
+      count: 30,
+      time: 45
     },
     {
       name: 'planowanie',
       title: 'Osiągi i planowanie lotów',
-      quizCount: 20,
-      quizTime: 60
+      count: 20,
+      time: 60
     },
     {
       name: 'medycyna',
       title: 'Człowiek - możliwości i ograniczenia',
-      quizCount: 12,
-      quizTime: 30
+      count: 12,
+      time: 30
     },
     {
       name: 'meteorologia',
       title: 'Meteorologia',
-      quizCount: 10,
-      quizTime: 30
+      count: 10,
+      time: 30
     },
     {
       name: 'nawigacja',
       title: 'Nawigacja',
-      quizCount: 24,
-      quizTime: 60
+      count: 24,
+      time: 60
     },
     {
       name: 'procedury',
       title: 'Procedury operacyjne',
-      quizCount: 12,
-      quizTime: 30
+      count: 12,
+      time: 30
     },
     {
       name: 'zasady',
       title: 'Zasady lotu',
-      quizCount: 16,
-      quizTime: 45
+      count: 16,
+      time: 45
     },
     {
       name: 'lacznosc',
       title: 'Łączność',
-      quizCount: 12,
-      quizTime: 30
+      count: 12,
+      time: 30
     },
     {
       name: 'bezpieczenstwo',
       title: 'Ogólne bezpieczeństwo lotów',
-      quizCount: 16,
-      quizTime: 30
+      count: 16,
+      time: 30
     },
     {
       name: 'samolot',
       title: 'Ogólna wiedza o samolocie',
-      quizCount: 16,
-      quizTime: 30
+      count: 16,
+      time: 30
     }
   ];
 
@@ -104,6 +104,17 @@ angular.module('pplTester.services', [])
       return array;
   };
 
+  var prepareQuestion = function (question) {
+      var answers = [{ans: 'A', msg: question.A},{ans: 'B', msg: question.B},{ans: 'C', msg: question.C},{ans: 'D', msg: question.D}];
+      shuffleArray(answers);
+      
+      return {
+        q: question.q,
+        ans: answers,
+        correct: question.ANSWER
+      };
+  };
+
   return {
     init: function () {
       return promise;
@@ -119,7 +130,6 @@ angular.module('pplTester.services', [])
     },
 
     random: function () {
-      questionsChanged = false;
 
       var num = getRandomArbitary(0, availableQuestions.length);
       var randomNum = Math.random();
@@ -138,52 +148,105 @@ angular.module('pplTester.services', [])
       return questionsChanged;
     },
 
-    randomTest: function () {
-      var randQ = this.random();
-      var answers = [{ans: 'A', msg: randQ.A},{ans: 'B', msg: randQ.B},{ans: 'C', msg: randQ.C},{ans: 'D', msg: randQ.D}];
-      var arr = shuffleArray(answers);
-      var asd = {
-        q: randQ.q,
-        ans: answers,
-        correct: randQ.ANSWER
-      }
-      
-      return asd;
+    randomQuestion: function () {
+      questionsChanged = false;
 
+      var randQ = this.random();
+      var question = prepareQuestion(randQ);
+      
+      return question;
     },
 
-    prepareQuesitons: prepareQuesitons,
+    getQuestions: function (topic, count) {
+      if (count > questions.topic.length) {
+          return console.error("Too many questions requested");
+      }
+
+      var allTopicQuestions = angular.copy(questions[topic]);
+      shuffleArray(allTopicQuestions);
+
+      var requestedQuestions = count ? topicQuestions.slice(0, count) : topicQuestions;
+      var preparedQuestions = [];
+
+      angular.forEach(requestedQuestions, function(question) {
+          preparedQuestions.push( prepareQuestion(question) );
+      });
+
+      return preparedQuestions;
+    },
+
 
     getAllTopics: function () {
       return allTopics;
     },
-    //updates answered questions array for later usage
+
+    //updates answered questions array for later usage / stats
     updateAnswered: function (test, result) {
       console.log('answered', result);
-    }
+    },
+
+    prepareQuesitons: prepareQuesitons
   }
 })
 
-.factory('Quizzes', function (Questions) {
+.factory('Quizzes', function (Questions, $timeout, $state) {
+  var currentQuiz = {
+    ended: false,
+    currentQuestion: 4,
+    topic: 'bezpieczeństwo',
+    count: 12,
+    questions: [1,2,3,4,5,6,7,8,9],
+    answers: []
+  };
+
+  var endTimeout;
+
+  var countScores = function () {
+    
+
+    // angular.forEach(currentQuiz.questions, function(question, idx) {
+    //   if (Questions.getAllTo)
+    // });
+
+    return {
+      correct: 8,
+      percentage: 0.52
+    }
+  };
+
   return {
-    currentQuiz: {
-      currentQuestion: 4,
-      topic: 'bezpieczeństwo',
-      questions: [1,2,3,4,5,6,7,8,9],
+    getAllQuizzes: function () {
+      return Questions.getAllTopics();
     },
 
-    getAllTopics: function () {
-      var topics = Questions.getAllTopics();
-      var quizzes = [];
-      
-      angular.forEach(topics, function(topic) {
-        if (topic.enabled) {
-          quizzes.push(topic);
-        }
-      })
+    endQuiz: function () {
+      currentQuiz.ended = true;
+      countScore();
+      $state.go('tab.quiz.summary');
+    },
 
-      return quizzes;
-    }
+    startQuiz: function (quiz) {
+      if (endTimeout) {
+        $timeout.cancel(endTimeout);
+      }
+
+      endTimeout = $timeout(function () {
+        endQuiz();
+      }, quiz.time * 60000);
+
+
+      currentQuiz = {
+        ended: false
+      }
+    },
+
+    checkAnswer: function (idx, ans) {
+      currentQuiz.answers[idx] = ans;
+    },
+    
+    currentQuiz: currentQuiz
+
+
   };
 });
 

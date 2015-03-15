@@ -27,7 +27,7 @@ angular.module('pplTester.controllers', [])
 
 .controller('QuestionsCtrl', function ($scope, Questions, Quizzes, $stateParams) {
   var quiz = this;
-  quiz.test = Questions.randomTest();
+  quiz.test = Questions.randomQuestion();
   quiz.choice = {};
 
   quiz.checkAnswer = function (test, selectedAns) {
@@ -40,24 +40,24 @@ angular.module('pplTester.controllers', [])
   quiz.nextTest = function () {
     quiz.answered = false;
     quiz.choice = {};
-    quiz.test = Questions.randomTest();
+    quiz.test = Questions.randomQuestion();
   };
 
   $scope.$on( "$ionicView.enter", function() {
       if (Questions.changed() ) {
-        quiz.test = Questions.randomTest();
+        quiz.test = Questions.randomQuestion();
       }
   });
 })
 
 .controller('QuizCtrl', function (Questions, Quizzes, $state, $stateParams, $ionicScrollDelegate) {
   var quiz = this;
-  quiz.test = Questions.randomTest();
+  quiz.test = Questions.randomQuestion();
   quiz.choice = {};
 
   quiz.lastQuestion = $stateParams.id === Quizzes.currentQuiz.questions.length;
 
-  quiz.topics = Quizzes.getAllTopics();
+  quiz.topics = Quizzes.getAllQuizzes();
 
   quiz.scrollBottom = function () {
       $ionicScrollDelegate.scrollBottom(true);
@@ -72,7 +72,7 @@ angular.module('pplTester.controllers', [])
 
   quiz.nextTest = function () {
     if (quiz.lastQuestion) {
-      $state.go('tab.quiz.finish');
+      Quizzes.endQuiz();
     } else {
       $state.go('tab.quiz.question', {
         id: $stateParams.id + 1
