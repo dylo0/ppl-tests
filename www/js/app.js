@@ -80,31 +80,30 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
     views: {
       'tab-quiz': {
         templateUrl: 'templates/tab-quiz.html',
-        controller: 'QuizCtrl as fr'
-      }
-      
+        
+        controller: 'QuizCtrl as qz'
+      } 
     }
   })
+    .state('tab.quiz-question', {
+        url: '/quiz/:id',
+        views: {
+          'tab-quiz': {
+            templateUrl: 'templates/tab-quiz-question.html',
+            controller: 'QuizQuestionsCtrl as qq'
+          }
+        }
+    })
 
-  .state('tab.quiz.question', {
-      url: '/quiz/:id',
+    .state('tab.quiz.summary', {
+      url: 'quiz/summary',
       views: {
-        'tab-quizas': {
-          templateUrl: 'templates/tab-quiz-question.html',
-          controller: 'QuizCtrl as fr'
+        'tab-quiz': {
+          templateUrl: 'templates/tab-quiz-summary.html'
+          // controller: 'QuizCtrl as fr'
         }
       }
-  })
-
-  .state('tab.quiz.summary', {
-    url: 'quiz/summary',
-    views: {
-      'tab-quiza': {
-        templateUrl: 'templates/tab-quiz-summary.html',
-        controller: 'QuizCtrl as fr'
-      }
-    }
-  })
+    })
 
 
 

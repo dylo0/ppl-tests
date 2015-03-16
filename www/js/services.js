@@ -200,8 +200,9 @@ angular.module('pplTester.services', [])
   };
 
   var endTimeout;
+  var scoreDisplayed = false;
 
-  var countScores = function () {
+  var countScore = function () {
     
 
     // angular.forEach(currentQuiz.questions, function(question, idx) {
@@ -221,11 +222,13 @@ angular.module('pplTester.services', [])
 
     endQuiz: function () {
       currentQuiz.ended = true;
-      countScore();
-      $state.go('tab.quiz.summary');
+      var score =countScore();
+      console.log(score);
     },
 
     startNewQuiz: function (quiz) {
+      scoreDisplayed = false;
+
       if (endTimeout) {
         $timeout.cancel(endTimeout);
       }
@@ -236,7 +239,7 @@ angular.module('pplTester.services', [])
 
 
       currentQuiz = {
-          currentQuestion: 4,
+          //currentQuestion: 4,
           topic: quiz.topic,
           count: quiz.count,
           questions: Questions.getQuestions(quiz.name, quiz.count),
@@ -245,13 +248,20 @@ angular.module('pplTester.services', [])
 
       console.info(currentQuiz);
     },
+    getCurrentQuiz: function() {
+      return currentQuiz;
+    },
+
+    getQuizQuestion: function(idx) {
+      return currentQuiz.questions[idx];
+    },
 
     checkAnswer: function (idx, ans) {
       currentQuiz.answers[idx] = ans;
     },
 
-    currentQuiz: currentQuiz
-
+    currentQuiz: currentQuiz,
+    scoreDisplayed: scoreDisplayed
 
   };
 });

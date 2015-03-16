@@ -50,12 +50,8 @@ angular.module('pplTester.controllers', [])
   });
 })
 
-.controller('QuizCtrl', function (Questions, Quizzes, $state, $stateParams, $ionicScrollDelegate) {
+.controller('QuizCtrl', function ($scope, Questions, Quizzes, $state, $stateParams, $ionicScrollDelegate) {
   var quiz = this;
-  quiz.test = Questions.randomQuestion();
-  quiz.choice = {};
-
-  quiz.lastQuestion = $stateParams.id === Quizzes.currentQuiz.questions.length;
 
   quiz.topics = Quizzes.getAllQuizzes();
 
@@ -63,27 +59,51 @@ angular.module('pplTester.controllers', [])
       $ionicScrollDelegate.scrollBottom(true);
   }
 
-  quiz.checkAnswer = function (test, selectedAns) {
-    quiz.answered = true;
-    quiz.correct = this.test.correct === selectedAns;
-
-    Questions.updateAnswered(test, quiz.correct);
-  };
-
   quiz.startQuiz = function (quiz) {
-    Quizzes.startNewQuiz(quiz);
-    //$state.go('tab.quiz.question', {id: 0});
+      Quizzes.startNewQuiz(quiz);
+
+      $state.go('tab.quiz-question', {id: 0});
   };
 
-  quiz.nextTest = function () {
-    if (quiz.lastQuestion) {
-      Quizzes.endQuiz();
+
+
+  // console.log($stateParams.id);
+
+  // $scope.$on( "$ionicView.enter", function() {
+  //   console.log('entered view');
+  // });
+})
+
+.controller('QuizQuestionsCtrl', function($scope, Quizzes, $state, $stateParams, Questions) {
+  var quiz = this;
+  
+  quiz.test = '';
+  quiz.choice = {};
+  quiz.current = Quizzes.getCurrentQuiz();
+  quiz.question = Quizzes.getQuizQuestion($stateParams.id);
+  quiz.currentIdx = parseInt($stateParams.id) + 1;
+
+  quiz.submitAnswer = function (test, choice) {
+    var correct = quiz.correct === choice;
+    Questions.updateAnswered(test, choice);
+
+    if (parseInt($stateParams.id) === quiz.current.count -1 ) {
+        Quizzes.endQuiz();
+        $state.go('tab.quiz.summary');
+
     } else {
-      $state.go('tab.quiz.question', {
-        id: $stateParams.id + 1
+      $state.go('.', {
+        id: parseInt($stateParams.id) + 1
       });
     }
   };
+
+  $scope.$on( "$ionicView.enter", function() {
+      if ( quiz.current.ended && !Quizzes.scoreDisplayed ) {
+        $state.go('tab.quiz.summary');
+      }
+  });
+
 })
 
 .controller('DashCtrl', function($scope, Questions, $ionicPopup, Quizzes, $translate, $state, $ionicModal) {
@@ -147,30 +167,6 @@ angular.module('pplTester.controllers', [])
     $scope.closeModal = function(modal) {
       modal.hide();
     }
-
-    // $scope.showResources = function() {
-    //     $scope.resourcesModal.show();
-    // };
-    
-    // $scope.closeResources = function() {
-    //     $scope.resourcesModal.hide();
-    // };
-
-    // $scope.showStats = function() {
-    //     $scope.statsModal.show();
-    // };
-    
-    // $scope.closeStats = function() {
-    //     $scope.statsModal.hide();
-    // };
-
-    // $scope.showStats = function() {
-    //     $scope.aboutModal.show();
-    // };
-    
-    // $scope.closeStats = function() {
-    //     $scope.aboutModal.hide();
-    // };
     
     $scope.$on('$destroy', function() {
         $scope.modal.remove();

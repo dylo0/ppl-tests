@@ -14521,7 +14521,7 @@
         "q": "Pierwszą czynnością załogi statku powietrznego po lądowaniu awaryjnym w terenie przygodnym i wystąpieniu pożaru jest:",
         "A": "Ugaszenie pożaru",
         "B": "Ratowanie rannych",
-        "C": "Telefon do straży pnej",
+        "C": "Telefon do straży pożarnej",
         "D": "Oddalenie się na bezpieczną odległość"
     },
     {
@@ -14531,7 +14531,7 @@
         "q": "Po zderzeniu z ptakiem dowódca statku powietrznego składa meldunek:",
         "A": "pisemny.",
         "B": "ustny.",
-        "C": "nie skł               ",
+        "C": "nie składa",
         "D": "składa, meldunek ustny, jeśli statek powietrzny uległ jakiemukolwiek uszkodzeniu."
     },
     {
