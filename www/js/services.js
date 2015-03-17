@@ -65,7 +65,7 @@ angular.module('pplTester.services', [])
     {
       name: 'samolot',
       title: 'Ogólna wiedza o samolocie',
-      count: 16,
+      count: 3, // testing - should be 16
       time: 30
     }
   ];
@@ -202,16 +202,22 @@ angular.module('pplTester.services', [])
   var endTimeout;
   var scoreDisplayed = false;
 
-  var countScore = function () {
-    
-
-    // angular.forEach(currentQuiz.questions, function(question, idx) {
-    //   if (Questions.getAllTo)
-    // });
+  var countScore = function (quiz) {
+    correctAnswers = 0;
+    answersKey = [];
+    angular.forEach(quiz.questions, function(question, idx) {
+      var correct = question.correct === quiz.answers[idx];
+      answersKey.push(correct);
+      
+      if ( correct ) {
+        correctAnswers += 1;
+      }
+    });
 
     return {
-      correct: 8,
-      percentage: 0.52
+      correct: correctAnswers,
+      percentage: correctAnswers / quiz.count,
+      key: answersKey
     }
   };
 
@@ -222,8 +228,9 @@ angular.module('pplTester.services', [])
 
     endQuiz: function () {
       currentQuiz.ended = true;
-      var score =countScore();
-      console.log(score);
+      var score =countScore(currentQuiz);
+
+      console.info(score);
     },
 
     startNewQuiz: function (quiz) {
@@ -245,9 +252,8 @@ angular.module('pplTester.services', [])
           questions: Questions.getQuestions(quiz.name, quiz.count),
           answers: []
       }
-
-      console.info(currentQuiz);
     },
+    
     getCurrentQuiz: function() {
       return currentQuiz;
     },

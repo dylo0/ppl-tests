@@ -95,8 +95,8 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
         }
     })
 
-    .state('tab.quiz.summary', {
-      url: 'quiz/summary',
+    .state('tab.quiz-summary', {
+      url: '/quiz/summary',
       views: {
         'tab-quiz': {
           templateUrl: 'templates/tab-quiz-summary.html'

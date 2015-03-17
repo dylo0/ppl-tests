@@ -17,6 +17,7 @@ angular.module('pplTester.controllers', [])
 })
 
 
+
 .controller('QuizStartCtrl', function ($scope, Questions, Quizzes, $state) {
   if (Quizzes.currentQuiz) {
     // $state.go();
@@ -24,6 +25,8 @@ angular.module('pplTester.controllers', [])
   // $scope.availableQuizzes = Quizzes.getAvailableQuizzes();
 
 })
+
+
 
 .controller('QuestionsCtrl', function ($scope, Questions, Quizzes, $stateParams) {
   var quiz = this;
@@ -50,6 +53,8 @@ angular.module('pplTester.controllers', [])
   });
 })
 
+
+
 .controller('QuizCtrl', function ($scope, Questions, Quizzes, $state, $stateParams, $ionicScrollDelegate) {
   var quiz = this;
 
@@ -74,7 +79,7 @@ angular.module('pplTester.controllers', [])
   // });
 })
 
-.controller('QuizQuestionsCtrl', function($scope, Quizzes, $state, $stateParams, Questions) {
+.controller('QuizQuestionsCtrl', function($scope, Quizzes, $state, $stateParams, $translate, $ionicPopup, Questions) {
   var quiz = this;
   
   quiz.test = '';
@@ -83,28 +88,59 @@ angular.module('pplTester.controllers', [])
   quiz.question = Quizzes.getQuizQuestion($stateParams.id);
   quiz.currentIdx = parseInt($stateParams.id) + 1;
 
-  quiz.submitAnswer = function (test, choice) {
-    var correct = quiz.correct === choice;
-    Questions.updateAnswered(test, choice);
+  var submitAnswer = function(test, choice) {
+      var correct = quiz.correct === choice;
+          Questions.updateAnswered(test, choice);
+          Quizzes.checkAnswer($stateParams.id, choice);
 
-    if (parseInt($stateParams.id) === quiz.current.count -1 ) {
-        Quizzes.endQuiz();
-        $state.go('tab.quiz.summary');
+      if (parseInt($stateParams.id) === quiz.current.count -1 ) {
+          Quizzes.endQuiz();
+          $state.go('tab.quiz-summary');
 
+      } else {
+          $state.go('.', {
+              id: parseInt($stateParams.id) + 1
+          });
+      }
+  };
+
+  var confirmEmpty = function (test, choice) {
+    $translate(['are_you_sure', 'want_to_submit_empty', 'yes', 'no_return'])
+    .then(function(translations) {
+        var confirmPopup = $ionicPopup.confirm({
+            title: translations['are_you_sure'],
+            template: translations['want_to_submit_empty'],
+            okText: translations['yes'],
+            cancelText: translations['no_return'],
+            okType: 'button-assertive'
+        });
+
+        confirmPopup.then(function(res) {
+            if(res) {
+                submitAnswer(test, choice);
+            }
+        });
+      });3
+  }
+
+
+  quiz.checkAnswer = function (test, choice) {
+    if (angular.equals(choice, {})) {
+        confirmEmpty();
     } else {
-      $state.go('.', {
-        id: parseInt($stateParams.id) + 1
-      });
+        submitAnswer(test, choice);
     }
   };
 
   $scope.$on( "$ionicView.enter", function() {
       if ( quiz.current.ended && !Quizzes.scoreDisplayed ) {
-        $state.go('tab.quiz.summary');
+        $state.go('tab.quiz-summary');
       }
   });
 
 })
+
+
 
 .controller('DashCtrl', function($scope, Questions, $ionicPopup, Quizzes, $translate, $state, $ionicModal) {
     $scope.topics = Questions.getAllTopics();

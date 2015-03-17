@@ -13,7 +13,7 @@
         {{answer.msg}}
       </ion-radio>
     </div>
-      <button ng-if="!qq.answered" class="button button-block" ng-click="qq.submitAnswer(qq.question, qq.choice)">{{'mark' | translate}}</button>
+      <button ng-if="!qq.answered" class="button button-block" ng-click="qq.checkAnswer(qq.question, qq.choice)">{{'mark' | translate}}</button>
       <div class="row">
 
        <a ng-if="!qq.answered" class="button" ng-href="#/tab/quiz/1">{{'previous' | translate}}</a> 
