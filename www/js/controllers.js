@@ -18,10 +18,12 @@ angular.module('pplTester.controllers', [])
 
 
 
-.controller('QuizStartCtrl', function ($scope, Questions, Quizzes, $state) {
+.controller('QuizSummaryCtrl', function ($scope, Questions, Quizzes, $state) {
   if (Quizzes.currentQuiz) {
     // $state.go();
   }
+
+  this.quiz = Quizzes.currentQuiz;
   // $scope.availableQuizzes = Quizzes.getAvailableQuizzes();
 
 })

@@ -230,7 +230,7 @@ angular.module('pplTester.services', [])
       currentQuiz.ended = true;
       var score =countScore(currentQuiz);
 
-      console.info(score);
+      currentQuiz.score = score;
     },
 
     startNewQuiz: function (quiz) {

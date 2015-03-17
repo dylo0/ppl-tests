@@ -99,8 +99,8 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
       url: '/quiz/summary',
       views: {
         'tab-quiz': {
-          templateUrl: 'templates/tab-quiz-summary.html'
-          // controller: 'QuizCtrl as fr'
+          templateUrl: 'templates/tab-quiz-summary.html',
+          controller: 'QuizSummaryCtrl as qs'
         }
       }
     })

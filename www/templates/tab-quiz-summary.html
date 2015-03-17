@@ -1,0 +1,46 @@
+<ion-view view-title="{{ 'summary' | translate }}">
+  <ion-content>
+
+    <div class="card">
+        <ion-item class="item-divider">
+            {{ 'score' | translate }}
+        </ion-item>
+        <ion-item>
+            {{ 'result' | translate }}
+            <span class="item-note">
+                10/20 [50%]
+            </span>
+        </ion-item>
+    </div>
+
+    <ion-radio class="item-text-wrap"  ng-repeat="topic in fr.topics" ng-model="fr.choosenTopic" ng-value="topic" ng-change="fr.scrollBottom()"> {{topic.title}} </ion-radio>
+
+        <ion-item>
+            {{ 'quiz' | translate }}
+            <span class="item-note">
+                {{ fr.choosenTopic.title }}
+            </span>
+        </ion-item>
+
+        <ion-item>
+            {{ 'time' | translate }}
+            <span class="item-note">
+                {{ fr.choosenTopic.time }} min
+            </span>
+        </ion-item>
+
+        <ion-item>
+            {{ 'number_of_questions' | translate }}
+            <span class="item-note">
+                {{ fr.choosenTopic.count }}
+            </span>
+        </ion-item>
+
+        <ion-item>
+            <button class="button button-positive button-block" ng-click="fr.startQuiz(fr.choosenTopic)">
+                {{ 'start_quiz' | translate }} 
+            </button>
+        </ion-item>
+    </div>
+  </ion-content>
+</ion-view>
