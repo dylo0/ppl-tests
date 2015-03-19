@@ -6,35 +6,29 @@
             {{ 'score' | translate }}
         </ion-item>
         <ion-item>
-            {{ 'result' | translate }}
+            {{ qq.result > qq.quiz.minimumScore ? 'positive' : 'negative'  | translate }}
             <span class="item-note">
-                10/20 [50%]
+                {{qs.quiz.score.correct}} / {{qs.quiz.count}} [{{ qq.result | number : 1}}%]
             </span>
         </ion-item>
     </div>
 
-    <ion-radio class="item-text-wrap"  ng-repeat="topic in fr.topics" ng-model="fr.choosenTopic" ng-value="topic" ng-change="fr.scrollBottom()"> {{topic.title}} </ion-radio>
-
-        <ion-item>
-            {{ 'quiz' | translate }}
-            <span class="item-note">
-                {{ fr.choosenTopic.title }}
-            </span>
+ <!--    <ion-radio class="item-text-wrap"  ng-repeat="topic in fr.topics" ng-model="fr.choosenTopic" ng-value="topic" ng-change="fr.scrollBottom()"> {{topic.title}} </ion-radio>
+ -->
+    <div class="card">
+        <ion-item class="item-divider">
+        {{ 'key_sheet' | translate }}
         </ion-item>
-
-        <ion-item>
-            {{ 'time' | translate }}
-            <span class="item-note">
-                {{ fr.choosenTopic.time }} min
+        <ion-item >
+            <button class="button button-outline button-block" ng-class="score ? 'button-balanced' : 'button-assertive'" href="tab/quiz/{score.id}" ng-repeat="score in qs.quiz.score.key track by $index"> {{ $index + 1 }}
+            <span class="item-note" ng-style="{color: score ? 'green' : 'red'}">
+                {{ score ? 'correct' : 'wrong' | translate}}
             </span>
+            </button>
         </ion-item>
-
-        <ion-item>
-            {{ 'number_of_questions' | translate }}
-            <span class="item-note">
-                {{ fr.choosenTopic.count }}
-            </span>
-        </ion-item>
+        
+        
+    </div>
 
         <ion-item>
             <button class="button button-positive button-block" ng-click="fr.startQuiz(fr.choosenTopic)">

@@ -19,12 +19,8 @@ angular.module('pplTester.controllers', [])
 
 
 .controller('QuizSummaryCtrl', function ($scope, Questions, Quizzes, $state) {
-  if (Quizzes.currentQuiz) {
-    // $state.go();
-  }
-
-  this.quiz = Quizzes.currentQuiz;
-  // $scope.availableQuizzes = Quizzes.getAvailableQuizzes();
+  this.quiz = Quizzes.getCurrentQuiz();
+  console.log(this.quiz)
 
 })
 
@@ -71,14 +67,6 @@ angular.module('pplTester.controllers', [])
 
       $state.go('tab.quiz-question', {id: 0});
   };
-
-
-
-  // console.log($stateParams.id);
-
-  // $scope.$on( "$ionicView.enter", function() {
-  //   console.log('entered view');
-  // });
 })
 
 .controller('QuizQuestionsCtrl', function($scope, Quizzes, $state, $stateParams, $translate, $ionicPopup, Questions) {

@@ -12,61 +12,71 @@ angular.module('pplTester.services', [])
       name: 'prawo',
       title: 'prawo lotnicze',
       count: 30,
-      time: 45
+      time: 45,
+      minimumScore: 70
     },
     {
       name: 'planowanie',
       title: 'Osiągi i planowanie lotów',
       count: 20,
-      time: 60
+      time: 60,
+      minimumScore: 70
     },
     {
       name: 'medycyna',
       title: 'Człowiek - możliwości i ograniczenia',
       count: 12,
-      time: 30
+      time: 30,
+      minimumScore: 70
     },
     {
       name: 'meteorologia',
       title: 'Meteorologia',
       count: 10,
-      time: 30
+      time: 30,
+      minimumScore: 70
     },
     {
       name: 'nawigacja',
       title: 'Nawigacja',
       count: 24,
-      time: 60
+      time: 60,
+      minimumScore: 70
     },
     {
       name: 'procedury',
       title: 'Procedury operacyjne',
       count: 12,
-      time: 30
+      time: 30,
+      minimumScore: 70
     },
     {
       name: 'zasady',
       title: 'Zasady lotu',
       count: 16,
-      time: 45
+      time: 45,
+      minimumScore: 70
     },
     {
       name: 'lacznosc',
       title: 'Łączność',
       count: 12,
-      time: 30
+      time: 30,
+      minimumScore: 70
     },
     {
       name: 'bezpieczenstwo',
       title: 'Ogólne bezpieczeństwo lotów',
       count: 16,
-      time: 30
+      time: 30,
+      minimumScore: 70
     },
     {
       name: 'samolot',
       title: 'Ogólna wiedza o samolocie',
       count: 3, // testing - should be 16
-      time: 30
+      time: 30,
+      minimumScore: 70
     }
   ];
 
@@ -246,7 +256,6 @@ angular.module('pplTester.services', [])
 
 
       currentQuiz = {
-          //currentQuestion: 4,
           topic: quiz.topic,
           count: quiz.count,
           questions: Questions.getQuestions(quiz.name, quiz.count),
