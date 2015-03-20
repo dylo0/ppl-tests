@@ -98,7 +98,7 @@ angular.module('pplTester.controllers', [])
     $translate(['are_you_sure', 'want_to_submit_empty', 'yes', 'no_return'])
     .then(function(translations) {
         var confirmPopup = $ionicPopup.confirm({
-            title: translations['are_you_sure'],
+            title: translations['confirm'],
             template: translations['want_to_submit_empty'],
             okText: translations['yes'],
             cancelText: translations['no_return'],
@@ -123,8 +123,8 @@ angular.module('pplTester.controllers', [])
   };
 
   $scope.$on( "$ionicView.enter", function() {
-        console.log(Quizzes);
-      if ( quiz.current.ended && !Quizzes.getCurrentQuiz().scoreDisplayed ) {
+    // quiz = Quizzes.getCurrentQuiz();
+      if ( quiz.current.ended && !quiz.current.scoreDisplayed ) {
         $state.go('tab.quiz-summary');
       }
   });

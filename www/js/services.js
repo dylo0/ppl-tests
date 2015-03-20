@@ -259,7 +259,8 @@ angular.module('pplTester.services', [])
           minimumScore: quiz.minimumScore,
           questions: Questions.getQuestions(quiz.name, quiz.count),
           answers: [],
-          scoreDisplayed: false
+          scoreDisplayed: false,
+          ended: false
       }
     },
 

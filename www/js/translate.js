@@ -32,7 +32,12 @@ angular.module('pplTester')
         question: 'Question',
         correct: 'Correct',
         incorrect: 'Incorrect',
-        preview_your_answers: 'Preview your answers'
+        preview_your_answers: 'Preview your answers',
+        mark: 'Check',
+        confirm: 'Are you sure?',
+        want_to_submit_empty: 'Do you want to submit empty answer?',
+        no_return: "No, return to question",
+        yes: "Yes"
     });
  
     $translateProvider.translations('pl', {
@@ -59,15 +64,20 @@ angular.module('pplTester')
         number_of_questions: "Ilość pytań",
         start_quiz: "Rozpocznij test!",
         back: "Powrót",
-        score: 'Wynik',
-        summary: 'Podsumowanie testu',
-        quiz_possitive: 'Wynik pozytywny',
-        quiz_negative: 'Wynik negatywny',
+        score: 'Wynik testu',
+        summary: 'Podsumowanie',
+        quiz_possitive: 'Pozytywny',
+        quiz_negative: 'Negatywny',
         key_sheet: 'Odpowiedzi',
         question: 'Pytanie',
         correct: 'Poprawne',
         incorrect: 'Błędne',
-        preview_your_answers: 'Zobacz odpowiedzi'
+        preview_your_answers: 'Zobacz odpowiedzi',
+        mark: 'Wybierz',
+        confirm: 'Potwierdż',
+        want_to_submit_empty: 'Czy chcesz zgłosić pustą odpowiedź?',
+        no_return: "Nie, powróć",
+        yes: "Tak"
     });
 
 })

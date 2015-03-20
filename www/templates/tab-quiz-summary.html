@@ -17,7 +17,7 @@
         </ion-item>
 
         <div class="list">
-            <a class="item item-icon-left" href="#/tab/quiz/{{$index-1}}" ng-repeat="score in qs.quiz.score.key track by $index">
+            <a class="item item-icon-left" href="#/tab/quiz/{{$index}}" ng-repeat="score in qs.quiz.score.key track by $index">
                 <i class="icon" ng-class="score ? 'ion-ios7-checkmark balanced' : 'ion-ios7-close assertive'"></i>
                 {{ 'question' | translate }} {{ $index + 1 }}
                 <span class="item-note" ng-class="score ? 'balanced' : 'assertive'">
@@ -29,11 +29,11 @@
         <ion-item class="item-divider"></ion-item>
         
         <ion-item>
-            <a class="button button-stable button-block" href="#/tab/quiz/0">
+            <a class="button button-light button-block" href="#/tab/quiz/0">
                 {{ 'preview_your_answers' | translate }} 
             </a>
 
-            <a class="button button-positive button-block" href="#/tab/quiz">
+            <a class="button button-stable button-block" href="#/tab/quiz">
                 {{ 'new_quiz' | translate }} 
             </a>
         </ion-item>
