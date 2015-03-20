@@ -23,7 +23,16 @@ angular.module('pplTester')
         time: "Time",
         number_of_questions: "Number of questions",
         start_quiz: "Start quiz!",
-        back: 'Back'
+        back: 'Back',
+        score: 'Your score',
+        summary: 'Quiz summary',
+        quiz_possitive: 'Quiz possitive!',
+        quiz_negative: 'Quz negative',
+        key_sheet: 'Your answers',
+        question: 'Question',
+        correct: 'Correct',
+        incorrect: 'Incorrect',
+        preview_your_answers: 'Preview your answers'
     });
  
     $translateProvider.translations('pl', {
@@ -49,7 +58,16 @@ angular.module('pplTester')
         time: "Czas",
         number_of_questions: "Ilość pytań",
         start_quiz: "Rozpocznij test!",
-        back: "Powrót"
+        back: "Powrót",
+        score: 'Wynik',
+        summary: 'Podsumowanie testu',
+        quiz_possitive: 'Wynik pozytywny',
+        quiz_negative: 'Wynik negatywny',
+        key_sheet: 'Odpowiedzi',
+        question: 'Pytanie',
+        correct: 'Poprawne',
+        incorrect: 'Błędne',
+        preview_your_answers: 'Zobacz odpowiedzi'
     });
 
 })

@@ -223,10 +223,11 @@ angular.module('pplTester.services', [])
         correctAnswers += 1;
       }
     });
-
+    
     return {
       correct: correctAnswers,
-      percentage: correctAnswers / quiz.count,
+      result: ( 100 * correctAnswers ) / quiz.count,
+      passed: this.result > quiz.minimumScore,
       key: answersKey
     }
   };
@@ -258,8 +259,9 @@ angular.module('pplTester.services', [])
       currentQuiz = {
           topic: quiz.topic,
           count: quiz.count,
+          minimumScore: quiz.minimumScore,
           questions: Questions.getQuestions(quiz.name, quiz.count),
-          answers: []
+          answers: [],
       }
     },
     

@@ -1,39 +1,41 @@
 <ion-view view-title="{{ 'summary' | translate }}">
   <ion-content>
-
-    <div class="card">
         <ion-item class="item-divider">
             {{ 'score' | translate }}
         </ion-item>
-        <ion-item>
-            {{ qq.result > qq.quiz.minimumScore ? 'positive' : 'negative'  | translate }}
+
+        <ion-item class="item-icon-left"  ng-class="qs.quiz.passed ? 'balanced' : 'assertive'">
+            <i class="icon" ng-class="qs.quiz.passed ? 'ion-ios7-checkmark balanced' : 'ion-ios7-close assertive'"></i>
+            {{ qs.quiz.passed ? 'quiz_positive' : 'quiz_negative'  | translate }}
             <span class="item-note">
-                {{qs.quiz.score.correct}} / {{qs.quiz.count}} [{{ qq.result | number : 1}}%]
+                {{qs.quiz.score.correct}} / {{qs.quiz.count}} [{{ qs.quiz.score.result | number : 1}}%]
             </span>
         </ion-item>
-    </div>
 
- <!--    <ion-radio class="item-text-wrap"  ng-repeat="topic in fr.topics" ng-model="fr.choosenTopic" ng-value="topic" ng-change="fr.scrollBottom()"> {{topic.title}} </ion-radio>
- -->
-    <div class="card">
         <ion-item class="item-divider">
-        {{ 'key_sheet' | translate }}
+            {{ 'key_sheet' | translate }}
         </ion-item>
-        <ion-item >
-            <button class="button button-outline button-block" ng-class="score ? 'button-balanced' : 'button-assertive'" href="tab/quiz/{score.id}" ng-repeat="score in qs.quiz.score.key track by $index"> {{ $index + 1 }}
-            <span class="item-note" ng-style="{color: score ? 'green' : 'red'}">
-                {{ score ? 'correct' : 'wrong' | translate}}
-            </span>
-            </button>
-        </ion-item>
-        
-        
-    </div>
 
+        <div class="list">
+            <a class="item item-icon-left" href="#/tab/quiz/{{$index-1}}" ng-repeat="score in qs.quiz.score.key track by $index">
+                <i class="icon" ng-class="score ? 'ion-ios7-checkmark balanced' : 'ion-ios7-close assertive'"></i>
+                {{ 'question' | translate }} {{ $index + 1 }}
+                <span class="item-note" ng-class="score ? 'balanced' : 'assertive'">
+                  {{ score ? 'correct' : 'incorrect' | translate}}
+                </span>
+            </a>
+        </div>
+        
+        <ion-item class="item-divider"></ion-item>
+        
         <ion-item>
-            <button class="button button-positive button-block" ng-click="fr.startQuiz(fr.choosenTopic)">
-                {{ 'start_quiz' | translate }} 
-            </button>
+            <a class="button button-stable button-block" href="#/tab/quiz/0">
+                {{ 'preview_your_answers' | translate }} 
+            </a>
+
+            <a class="button button-positive button-block" href="#/tab/quiz">
+                {{ 'new_quiz' | translate }} 
+            </a>
         </ion-item>
     </div>
   </ion-content>
