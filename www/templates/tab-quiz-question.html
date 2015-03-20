@@ -1,10 +1,13 @@
 <ion-view>
 
-<ion-nav-title>
-  {{qq.current.title}}
-  <span style="float:left;color:#bbb">30:00</span>
-  <span style="float:right;color:#bbb"> [{{qq.currentIdx}}/{{qq.current.count}}]</span>
-</ion-nav-title>
+  <ion-nav-title>
+    {{qq.current.title}}
+    <a ng-if="qq.current.ended" href="#/tab/quiz/summary" class="button" style="float:left; margin-top:3px">
+      <i class="icon ion-navicon"></i>
+    </a>
+    <span ng-if="!qq.current.ended" style="float:left;color:#bbb">30:00</span>
+    <span style="float:right;color:#bbb"> [{{qq.currentIdx}}/{{qq.current.count}}]</span>
+  </ion-nav-title>
 
 
   <ion-content>
@@ -13,9 +16,7 @@
         {{qq.question.q}}
       </div>
     </div>
-    <div class="item item-divider">
-
-  </div>
+    <div class="item item-divider"></div>
     <div style="min-height: 50vh">
       <ion-radio class="item-text-wrap" ng-class="{'correct': qq.answered && qq.correct, 'incorrect': qq.answered && !qq.correct}" ng-repeat="answer in qq.question.ans" ng-model="qq.choice" ng-value="answer.ans" ng-disabled="qq.answered"> 
         {{answer.msg}}
