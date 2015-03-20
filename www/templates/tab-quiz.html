@@ -1,41 +1,43 @@
 <ion-view view-title="{{ 'choose_quiz_topic' | translate }}">
-  <ion-content>
+    <ion-content>
 
-    <ion-radio class="item-text-wrap"  ng-repeat="topic in qz.topics" ng-model="qz.choosenTopic" ng-value="topic" ng-change="qz.scrollBottom()"> {{topic.title}} </ion-radio>
+        <ion-radio class="item-text-wrap" ng-repeat="topic in qz.topics" ng-model="qz.choosenTopic" ng-value="topic"
+                   ng-change="qz.scrollBottom()"> {{topic.title}}
+        </ion-radio>
 
-    <div class="card" ng-if="qz.choosenTopic.name">
+        <div class="card" ng-if="qz.choosenTopic.name">
 
-        <ion-item class="item-divider">
-            {{ 'quiz_details' | translate }}
-        </ion-item>
+            <ion-item class="item-divider">
+                {{ 'quiz_details' | translate }}
+            </ion-item>
 
-        <ion-item>
-            {{ 'quiz' | translate }}
+            <ion-item>
+                {{ 'quiz' | translate }}
             <span class="item-note">
                 {{ qz.choosenTopic.title }}
             </span>
-        </ion-item>
+            </ion-item>
 
-        <ion-item>
-            {{ 'time' | translate }}
+            <ion-item>
+                {{ 'time' | translate }}
             <span class="item-note">
                 {{ qz.choosenTopic.time }} min
             </span>
-        </ion-item>
+            </ion-item>
 
-        <ion-item>
-            {{ 'number_of_questions' | translate }}
+            <ion-item>
+                {{ 'number_of_questions' | translate }}
             <span class="item-note">
                 {{ qz.choosenTopic.count }}
             </span>
-        </ion-item>
+            </ion-item>
 
-        <ion-item>
-            <button class="button button-positive button-block" ng-click="qz.startQuiz(qz.choosenTopic)">
-                {{ 'start_quiz' | translate }} 
-            </button>
-        </ion-item>
-    </div>
-  </ion-content>
+            <ion-item>
+                <button class="button button-positive button-block" ng-click="qz.startQuiz(qz.choosenTopic)">
+                    {{ 'start_quiz' | translate }}
+                </button>
+            </ion-item>
+        </div>
+    </ion-content>
 </ion-view>
 

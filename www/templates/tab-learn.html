@@ -1,22 +1,21 @@
-
 <ion-view title="{{'learn' | translate}}">
-  <ion-content>
-    <div class="item item-text-wrap">
-      <div>
-        {{question.q}}
-      </div>
-    </div>
-    
-    <div class="item item-divider"></div>
-    
-    <div style="min-height: 50vh">
-      <div class="item item-text-wrap">  
-        {{question.A}}
-      </div>
-    </div>
+    <ion-content>
+        <div class="item item-text-wrap">
+            <div>
+                {{question.q}}
+            </div>
+        </div>
 
-    <button class="button button-block" ng-click="nextQuestion()">
-      {{'next_question' | translate}} 
-    </button>
-  </ion-content>
+        <div class="item item-divider"></div>
+
+        <div style="min-height: 50vh">
+            <div class="item item-text-wrap">
+                {{question.A}}
+            </div>
+        </div>
+
+        <button class="button button-block" ng-click="nextQuestion()">
+            {{'next_question' | translate}}
+        </button>
+    </ion-content>
 </ion-view>

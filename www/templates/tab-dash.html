@@ -1,128 +1,133 @@
 <ion-view view-title="{{'dashboard' | translate}}">
 
     <ion-nav-buttons side="right">
-      <button class="button button-clear" ng-click="showModal(aboutModal)">
-        <i class="icon ion-ios7-help-outline"></i>
-      </button>
+        <button class="button button-clear" ng-click="showModal(aboutModal)">
+            <i class="icon ion-ios7-help-outline"></i>
+        </button>
     </ion-nav-buttons>
-  <ion-content>
-    <ion-list>
-      <ion-item>
-      
-        <a ng-click="startNewQuiz()" class="button button-calm button-block">
-            {{ 'new_quiz' | translate }}
-        </a>
+    <ion-content>
+        <ion-list>
+            <ion-item>
 
-        <a ng-click="showModal(resourcesModal)" class="button button-calm button-block">
-            {{ 'learning_resources' | translate }}
-        </a>
+                <a ng-click="startNewQuiz()" class="button button-calm button-block">
+                    {{ 'new_quiz' | translate }}
+                </a>
 
-        <a ng-click="showModal(statsModal)" class="button button-calm button-block">
-            {{ 'statistics' | translate }}
-        </a>
+                <a ng-click="showModal(resourcesModal)" class="button button-calm button-block">
+                    {{ 'learning_resources' | translate }}
+                </a>
 
-      </ion-item>
-    </ion-list>
-  </ion-content>
+                <a ng-click="showModal(statsModal)" class="button button-calm button-block">
+                    {{ 'statistics' | translate }}
+                </a>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>
 
 <script id="stats-modal.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">{{ 'statistics' | translate }}</h1>
-    </ion-header-bar>
-    <ion-content on-swipe-left="closeModal(statsModal)">
-      <div class="card">
-        <ion-item class="item-divider">
-          {{'statistics' | translate }}
-        </ion-item>
-        
-        <ion-item >
-          Questions answered
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">{{ 'statistics' | translate }}</h1>
+        </ion-header-bar>
+        <ion-content on-swipe-left="closeModal(statsModal)">
+            <div class="card">
+                <ion-item class="item-divider">
+                    {{'statistics' | translate }}
+                </ion-item>
+
+                <ion-item>
+                    Questions answered
           <span class="item-note">
             123
           </span>
-        </ion-item>
-        
-        <ion-item>
-          Correct answers
-          <span class="item-note">
-            52%
-          </span>
-        </ion-item>
-        
-        <ion-item>
-          Last 100
-          <span class="item-note">
-            52%
-          </span>
-        </ion-item>
+                </ion-item>
 
-        <ion-item class="item-divider">
-          {{ 'quizzes'  | translate }}
-        </ion-item>
-        
-        <ion-item ng-repeat="topic in topics">
-          {{ topic.title }}
+                <ion-item>
+                    Correct answers
+          <span class="item-note">
+            52%
+          </span>
+                </ion-item>
+
+                <ion-item>
+                    Last 100
+          <span class="item-note">
+            52%
+          </span>
+                </ion-item>
+
+                <ion-item class="item-divider">
+                    {{ 'quizzes' | translate }}
+                </ion-item>
+
+                <ion-item ng-repeat="topic in topics">
+                    {{ topic.title }}
           <span class="item-note">
             12%
           </span>
-        </ion-item>
+                </ion-item>
 
-        <ion-item class="item-divider"></ion-item>
-        
-        <ion-item>
-            <button class="button button-small button-block">{{'reset_stats' | translate}}</button>
-          </ion-item>
-       </div>
-      <button class="button button-block" ng-click="closeModal(statsModal)">{{ 'back' | translate }}</button>
-    </ion-content>
+                <ion-item class="item-divider"></ion-item>
 
-  </ion-modal-view>
+                <ion-item>
+                    <button class="button button-small button-block">{{'reset_stats' | translate}}</button>
+                </ion-item>
+            </div>
+            <button class="button button-block" ng-click="closeModal(statsModal)">{{ 'back' | translate }}</button>
+        </ion-content>
+
+    </ion-modal-view>
 </script>
 
 
 <script id="resources-modal.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">{{ 'learning_resources' | translate }}</h1>
-    </ion-header-bar>
-    <ion-content on-swipe-left="closeModal(resourcesModal)">
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">{{ 'learning_resources' | translate }}</h1>
+        </ion-header-bar>
+        <ion-content on-swipe-left="closeModal(resourcesModal)">
 
-          <ion-checkbox ng-repeat="topic in topics" ng-model="topic.enabled" ng-change="prepareQuestions()">{{ topic.title }}</ion-checkbox>
+            <ion-checkbox ng-repeat="topic in topics" ng-model="topic.enabled" ng-change="prepareQuestions()">{{
+                topic.title }}
+            </ion-checkbox>
 
-      <button class="button button-block" ng-click="closeModal(resourcesModal)">{{ 'back' | translate }}</button>
-    </ion-content>
+            <button class="button button-block" ng-click="closeModal(resourcesModal)">{{ 'back' | translate }}</button>
+        </ion-content>
 
-  </ion-modal-view>
+    </ion-modal-view>
 </script>
 
 <script id="about-modal.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">PPL(A) PL Tests</h1>
-    </ion-header-bar>
-    <ion-content on-swipe-left="closeModal(about)">
-      <div class="card">
-      <div class="row">
-      <div class="col col-75">
-        <div class="item">
-          <h3>Tomasz Dyl Development</h3>
-          
-          <p>tomekdyl@gmail.com</p>
-          <p>@MobileWebPro 2015</p>
-        </div>
-        </div>
-        <div class="col">
-        <div class="item">
-          <i class="icon ion-paper-airplane" style="font-size:60px;color:#ddd"></i>
-          </div>
-        </div>
-      </div>
-      </div>
+    <ion-modal-view>
+        <ion-header-bar>
+            <h1 class="title">PPL(A) PL Tests</h1>
+        </ion-header-bar>
+        <ion-content on-swipe-left="closeModal(about)">
+            <div class="card">
+                <div class="row">
+                    <div class="col col-75">
+                        <div class="item">
+                            <h3>Tomasz Dyl Development</h3>
 
-      <button class="button button-block" style="margin-top:60px" ng-click="closeModal(aboutModal)">{{ 'back' | translate }}</button>
-    </ion-content>
+                            <p>tomekdyl@gmail.com</p>
 
-  </ion-modal-view>
+                            <p>@MobileWebPro 2015</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="item">
+                            <i class="icon ion-paper-airplane" style="font-size:60px;color:#ddd"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="button button-block" style="margin-top:60px" ng-click="closeModal(aboutModal)">{{ 'back' |
+                translate }}
+            </button>
+        </ion-content>
+
+    </ion-modal-view>
 </script>
