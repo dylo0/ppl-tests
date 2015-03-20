@@ -206,11 +206,11 @@ angular.module('pplTester.services', [])
     topic: 'bezpieczeństwo',
     count: 12,
     questions: [1,2,3,4,5,6,7,8,9],
-    answers: []
+    answers: [],
+    scoreDisplayed: false
   };
 
   var endTimeout;
-  var scoreDisplayed = false;
 
   var countScore = function (quiz) {
     correctAnswers = 0;
@@ -245,24 +245,26 @@ angular.module('pplTester.services', [])
     },
 
     startNewQuiz: function (quiz) {
-      scoreDisplayed = false;
-
       if (endTimeout) {
         $timeout.cancel(endTimeout);
       }
 
       endTimeout = $timeout(function () {
-        endQuiz();
+          endQuiz();
       }, quiz.time * 60000);
 
-
       currentQuiz = {
-          topic: quiz.topic,
+          title: quiz.title,
           count: quiz.count,
           minimumScore: quiz.minimumScore,
           questions: Questions.getQuestions(quiz.name, quiz.count),
           answers: [],
+          scoreDisplayed: false
       }
+    },
+
+    summaryShown: function () {
+      currentQuiz.scoreDisplayed = true;
     },
     
     getCurrentQuiz: function() {
@@ -275,11 +277,7 @@ angular.module('pplTester.services', [])
 
     checkAnswer: function (idx, ans) {
       currentQuiz.answers[idx] = ans;
-    },
-
-    currentQuiz: currentQuiz,
-    scoreDisplayed: scoreDisplayed
-
+    }
   };
 });
 

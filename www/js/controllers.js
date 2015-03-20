@@ -20,7 +20,7 @@ angular.module('pplTester.controllers', [])
 
 .controller('QuizSummaryCtrl', function ($scope, Questions, Quizzes, $state) {
   this.quiz = Quizzes.getCurrentQuiz();
-  console.log(this.quiz)
+  Quizzes.summaryShown();
 
 })
 
@@ -123,7 +123,8 @@ angular.module('pplTester.controllers', [])
   };
 
   $scope.$on( "$ionicView.enter", function() {
-      if ( quiz.current.ended && !Quizzes.scoreDisplayed ) {
+        console.log(Quizzes);
+      if ( quiz.current.ended && !Quizzes.getCurrentQuiz().scoreDisplayed ) {
         $state.go('tab.quiz-summary');
       }
   });
