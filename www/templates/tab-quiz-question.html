@@ -23,13 +23,13 @@
         <button ng-if="!qq.current.ended" class="button button-block" ng-click="qq.checkAnswer(qq.question, qq.choice)">
             {{'mark' | translate}}
         </button>
-        <div class="row">
 
-            <a ng-if="qq.current.ended" class="button col" ng-href="#/tab/quiz/1">{{'previous' | translate}}</a>
+        <div ng-show="qq.current.ended" class="row">
+            <a class="button col" ng-href="#/tab/quiz/1">{{'previous' | translate}}</a>
             <a ng-if="qq.current.ended" class="button col" ng-href="#/tab/quiz/4">{{'next' | translate}}</a>
         </div>
 
-        <a ng-if="qq.current.ended" class="button button-light button-block" ng-href="#/tab/quiz/summary">
+        <a ng-show="qq.current.ended" class="button button-light button-block" ng-href="#/tab/quiz/summary">
             {{'back_to_summary' | translate}}
         </a>
     </ion-content>

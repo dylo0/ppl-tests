@@ -74,7 +74,7 @@ angular.module('pplTester.controllers', [])
             $scope.question = Questions.random();
         };
 
-        $scope.$on("$ionicView.enter", function () {
+        $scope.$on("$ionicView.beforeEnter", function () {
             if (Questions.changed()) {
                 $scope.nextQuestion();
             }
@@ -100,7 +100,7 @@ angular.module('pplTester.controllers', [])
             questinCtrl.test = Questions.randomQuestion();
         };
 
-        $scope.$on("$ionicView.enter", function () {
+        $scope.$on("$ionicView.beforeEnter", function () {
             if (Questions.changed()) {
                 questinCtrl.test = Questions.randomQuestion();
             }
@@ -133,9 +133,8 @@ angular.module('pplTester.controllers', [])
         quiz.question = Quizzes.getQuizQuestion($stateParams.id);
         quiz.currentIdx = parseInt($stateParams.id) + 1;
 
-        $scope.$on("$ionicView.enter", function () {
+        $scope.$on("$ionicView.beforeEnter", function () {
             quiz.current = Quizzes.getCurrentQuiz();
-            console.log('asd');
             if (quiz.current.ended && !quiz.current.scoreDisplayed) {
                 console.log('ended');
                 $state.go('tab.quiz-summary');
