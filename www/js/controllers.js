@@ -96,7 +96,7 @@ angular.module('pplTester.controllers', [])
         };
 
         var confirmEmpty = function (test, choice) {
-            $translate(['are_you_sure', 'want_to_submit_empty', 'yes', 'no_return'])
+            $translate(['confirm', 'want_to_submit_empty', 'yes', 'no_return'])
                 .then(function (translations) {
                     var confirmPopup = $ionicPopup.confirm({
                         title: translations['confirm'],
