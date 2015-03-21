@@ -24,33 +24,28 @@ angular.module('pplTester.controllers', [])
             $scope.aboutModal = modal;
         });
 
-        $scope.confirmStart = function () {
-            $translate(['quiz_in_progress', 'want_to_restart', 'restart_quiz', 'return_to_quiz'])
+        $scope.startNewQuiz = function () {
+            $state.go('tab.quiz');
+        };
+
+        $scope.endCurrentQuiz = function () {
+            $translate(['confirm', 'want_to_end', 'end_quiz', 'return'])
                 .then(function (translations) {
                     var confirmPopup = $ionicPopup.confirm({
-                        title: translations['quiz_in_progress'],
-                        template: translations['want_to_restart'],
-                        okText: translations['restart_quiz'],
-                        cancelText: translations['return_to_quiz'],
+                        title: translations['confirm'],
+                        template: translations['want_to_end'],
+                        okText: translations['end_quiz'],
+                        cancelText: translations['return'],
                         okType: 'button-assertive'
                     });
 
                     confirmPopup.then(function (res) {
                         if (res) {
-                            $state.go('tab.quiz.new');
-                        } else {
-                            $state.go('tab.quiz', {id: Quizzes.currentQuestion.number});
+                            Quizzes.endQuiz();
+                            $state.go('tab.quiz-summary');
                         }
                     });
                 });
-        };
-
-        $scope.startNewQuiz = function () {
-            if (Quizzes.quizInProgress) {
-                $scope.confirmStart();
-            } else {
-                $state.go('tab.quiz.new')
-            }
         };
 
         $scope.showModal = function (modal) {
@@ -63,6 +58,10 @@ angular.module('pplTester.controllers', [])
 
         $scope.$on('$destroy', function () {
             $scope.modal.remove();
+        });
+
+        $scope.$on("$ionicView.beforeEnter", function () {
+            $scope.quizInProgress = Quizzes.isQuizInProgress();
         });
     })
 

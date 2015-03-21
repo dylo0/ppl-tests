@@ -210,7 +210,7 @@ angular.module('pplTester.services', [])
             answers: [],
             scoreDisplayed: false
         };
-
+        var quizInProgress = false;
         var endTimeout;
 
         var countScore = function (quiz) {
@@ -240,6 +240,7 @@ angular.module('pplTester.services', [])
 
             endQuiz: function () {
                 currentQuiz.ended = true;
+                quizInProgress = false;
                 currentQuiz.score = countScore(currentQuiz);
             },
 
@@ -260,7 +261,9 @@ angular.module('pplTester.services', [])
                     answers: [],
                     scoreDisplayed: false,
                     ended: false
-                }
+                };
+
+                quizInProgress = true;
             },
 
             summaryShown: function () {
@@ -277,6 +280,10 @@ angular.module('pplTester.services', [])
 
             checkAnswer: function (idx, ans) {
                 currentQuiz.answers[idx] = ans;
+            },
+
+            isQuizInProgress: function () {
+                return quizInProgress;
             }
         };
     });

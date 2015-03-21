@@ -9,7 +9,11 @@
         <ion-list>
             <ion-item>
 
-                <a ng-click="startNewQuiz()" class="button button-calm button-block">
+                <a ng-if="quizInProgress" ng-click="endCurrentQuiz()" class="button button-calm button-block">
+                    {{ 'end_quiz' | translate }}
+                </a>
+
+                <a ng-if="!quizInProgress" ng-click="startNewQuiz()" class="button button-calm button-block">
                     {{ 'new_quiz' | translate }}
                 </a>
 
