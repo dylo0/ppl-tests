@@ -1,8 +1,13 @@
-<ion-view title="{{'learn' | translate}}">
-    <ion-content has-header="true">
+<ion-view title="{{learn.question.topic}}">
+    <ion-nav-buttons side="right">
+        <span class="header-annotation">{{learn.question.id}}</span>
+    </ion-nav-buttons>
+
+    <ion-content>
         <div class="card">
             <div class="item-text-wrap" style="min-height: 40vh">
                 <i class="icon ion-help-circled card-background"></i>
+
                 <div class="item item-text-wrap transparent">
                     {{learn.question.q}}
                 </div>
@@ -23,8 +28,12 @@
             </div>
 
             <div class="item row padding" ng-if="learn.checked">
-                <button class="button  col button-assertive" ng-click="learn.nextQuestion(false)">{{'incorrect' | translate}}</button>
-                <button class="button col button-balanced" ng-click="learn.nextQuestion(true)">{{'correct' | translate}}</button>
+                <button class="button  col button-assertive" ng-click="learn.nextQuestion(false)">
+                    {{'incorrect' | translate}}
+                </button>
+                <button class="button col button-balanced" ng-click="learn.nextQuestion(true)">
+                    {{'correct' | translate}}
+                </button>
             </div>
         </div>
     </ion-content>

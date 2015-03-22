@@ -1,5 +1,5 @@
 {
-"prawo":   [               
+"prawo":   [
     {
         "id": 1,
         "ANSWER": "A",
@@ -1390,7 +1390,7 @@
         "B": "Na przydziale odpowiednich elementów przestrzeni powietrznej poszczególnym jej użytkownikom",
         "C": "Na zapewnieniu alarmowej służby ruchu lotniczego",
         "D": "Na zapewnieniu służby kontroli ruchu lotniczego oraz służby informacji powietrznej"
-    },            
+    },
     {
         "id": 140,
         "ANSWER": "A",
@@ -1852,7 +1852,7 @@
         "D": "W przypadku stwierdzenia że członek personelu lotniczego nie spełnia wymagań w zakresie wykształcenia"
     },
     {
-        "id": 186,    
+        "id": 186,
         "code": "PL010-0216",
         "ANSWER": "A",
         "q": "W jakim przypadku można cofnąć albo zawiesić licencję lub wynikające z niej niektóre uprawnienia?",
@@ -2749,8 +2749,8 @@
         "B": "Nie",
         "C": "Tak, ale tylko w przypadku kiedy ośrodek chce wykonywać szkolenia na statkach powietrznych o masie powyżej 5700 kg",
         "D": "Tak, ale tylko w przypadku kiedy ośrodek chce wykonywać szkolenia na śmigłowcach"
-    },   
-    {   
+    },
+    {
         "id": 276,
         "ANSWER": "A",
         "code": "PL010-0365",
@@ -2849,7 +2849,7 @@
         "B": "Nie, nie ma takiej możliwości",
         "C": "Tak",
         "D": "Tak, pod warunkiem posiadania orzeczenia lotniczo-lekarskiego klasy III"
-    },  
+    },
     {
         "id": 286,
         "code": "PL010-0376",
@@ -2875,7 +2875,7 @@
         "ANSWER": "A",
         "code": "PL010-0378",
         "q": "Czy pracownikom Urzędu Lotnictwa Cywilnego, przysługuje prawo wykonywania czynności kontrolno-pomiarowych badań statków powietrznych wykorzystywanych do prowadzenia działalności lotniczej?",
-        "A": "Tak, ale tylko po okazaniu legitymacji służbowej", 
+        "A": "Tak, ale tylko po okazaniu legitymacji służbowej",
         "B": "Nie",
         "C": "Tak, ale tylko za potwierdzoną zgodą Prezesa Urzędu Lotnictwa Cywilnego,",
         "D": "Tak, ale tylko na terenie międzynarodowych portów lotniczych"
@@ -3549,7 +3549,7 @@
         "C": "FL 60",
         "D": "FL 190"
     },
-    { 
+    {
         "id": 356,
         "code": "PL010-0451",
         "ANSWER": "A",
@@ -4118,7 +4118,7 @@
         "B": "nie mniejsza niż2 km",
         "C": "nie mniejsza niż 5 km",
         "D": " nieokreślona – z dala od chmur"
-    },      
+    },
     {
         "id": 413,
         "ANSWER": "A",
@@ -5100,7 +5100,7 @@
         "D": "wysokości bezwzględnej 1550 m"
     }],
 
-"samolot": [    
+"samolot": [
     {
         "id": 511,
         "code": "PL020-0001",
@@ -11071,7 +11071,7 @@
         "C": "morfiny",
         "D": "heroiny"
     }],
-    
+
 "meteorologia": [
     {
         "id": 1104,
@@ -11602,7 +11602,7 @@
         "B": "Szronu",
         "C": "Rosy",
         "D": "Mokrej powierzchni"
-    },            
+    },
     {
         "id": 1157,
         "ANSWER": "A",
@@ -12644,7 +12644,7 @@
         "A": "045°",
         "B": "095°",
         "C": "135°",
-        "D": "345°" 
+        "D": "345°"
     },
     {
         "id": 1261,
@@ -12703,7 +12703,7 @@
         "B": "1 km",
         "C": "60 km",
         "D": "2 km"
-    }, 
+    },
     {
         "id": 1267,
         "ANSWER": "A",
@@ -12833,7 +12833,7 @@
         "B": "NE",
         "C": "SW",
         "D": "NW"
-    }, 
+    },
     {
         "id": 1280,
         "ANSWER": "A",
@@ -13083,7 +13083,7 @@
         "B": "27",
         "C": "24",
         "D": "34"
-    }, 
+    },
     {
         "ANSWER": "A",
         "code": "qL060-0073",
@@ -13102,7 +13102,7 @@
         "B": "24",
         "C": "88",
         "D": "100"
-    },         
+    },
     {
         "id": 1307,
         "ANSWER": "A",
@@ -13601,7 +13601,7 @@
         "B": "50m",
         "C": "100m",
         "D": "PL060-0151"
-    },         
+    },
     {
         "id": 1357,
         "ANSWER": "A",

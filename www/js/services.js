@@ -13,72 +13,83 @@ angular.module('pplTester.services', [])
                 title: 'prawo lotnicze',
                 count: 30,
                 time: 45,
-                minimumScore: 70
-            },
-            {
-                name: 'planowanie',
-                title: 'Osiągi i planowanie lotów',
-                count: 20,
-                time: 60,
-                minimumScore: 70
-            },
-            {
-                name: 'medycyna',
-                title: 'Człowiek - możliwości i ograniczenia',
-                count: 12,
-                time: 30,
-                minimumScore: 70
-            },
-            {
-                name: 'meteorologia',
-                title: 'Meteorologia',
-                count: 10,
-                time: 30,
-                minimumScore: 70
-            },
-            {
-                name: 'nawigacja',
-                title: 'Nawigacja',
-                count: 24,
-                time: 60,
-                minimumScore: 70
-            },
-            {
-                name: 'procedury',
-                title: 'Procedury operacyjne',
-                count: 12,
-                time: 30,
-                minimumScore: 70
-            },
-            {
-                name: 'zasady',
-                title: 'Zasady lotu',
-                count: 16,
-                time: 45,
-                minimumScore: 70
-            },
-            {
-                name: 'lacznosc',
-                title: 'Łączność',
-                count: 12,
-                time: 30,
-                minimumScore: 70
-            },
-            {
-                name: 'bezpieczenstwo',
-                title: 'Ogólne bezpieczeństwo lotów',
-                count: 16,
-                time: 30,
-                minimumScore: 70
+                minimumScore: 70,
+                firstIdx: 0
             },
             {
                 name: 'samolot',
                 title: 'Ogólna wiedza o samolocie',
                 count: 3, // testing - should be 16
                 time: 30,
-                minimumScore: 70
+                minimumScore: 70,
+                firstIdx: 511
+            },
+            {
+                name: 'planowanie',
+                title: 'Osiągi i planowanie lotów',
+                count: 20,
+                time: 60,
+                minimumScore: 70,
+                firstIdx: 742
+            },
+            {
+                name: 'medycyna',
+                title: 'Człowiek - możliwości i ograniczenia',
+                count: 12,
+                time: 30,
+                minimumScore: 70,
+                firstIdx: 797
+            },
+            {
+                name: 'meteorologia',
+                title: 'Meteorologia',
+                count: 10,
+                time: 30,
+                minimumScore: 70,
+                firstIdx: 1104
+            },
+            {
+                name: 'nawigacja',
+                title: 'Nawigacja',
+                count: 24,
+                time: 60,
+                minimumScore: 70,
+                firstIdx: 1243
+            },
+            {
+                name: 'procedury',
+                title: 'Procedury operacyjne',
+                count: 12,
+                time: 30,
+                minimumScore: 70,
+                firstIdx: 1434
+            },
+            {
+                name: 'zasady',
+                title: 'Zasady lotu',
+                count: 16,
+                time: 45,
+                minimumScore: 70,
+                firstIdx: 1508
+            },
+            {
+                name: 'lacznosc',
+                title: 'Łączność',
+                count: 12,
+                time: 30,
+                minimumScore: 70,
+                firstIdx: 1897
+            },
+            {
+                name: 'bezpieczenstwo',
+                title: 'Ogólne bezpieczeństwo lotów',
+                count: 16,
+                time: 30,
+                minimumScore: 70,
+                firstIdx: 1903
             }
         ];
+
 
         angular.forEach(allTopics, function (topic) {
             topic.enabled = true;
@@ -115,17 +126,30 @@ angular.module('pplTester.services', [])
             return array;
         }
 
+        var getQuestionTopic = function (question) {
+            for (var i = allTopics.length - 1; i >= 0; i--) {
+
+                if (question.id >= allTopics[i].firstIdx) {
+                    return allTopics[i].title;
+                }
+            }
+        };
+
         var prepareQuestion = function (question) {
-            var answers = [{ans: 'A', msg: question.A}, {ans: 'B', msg: question.B}, {
-                ans: 'C',
-                msg: question.C
-            }, {ans: 'D', msg: question.D}];
+            var answers = [
+                {ans: 'A', msg: question.A},
+                {ans: 'B', msg: question.B},
+                {ans: 'C', msg: question.C},
+                {ans: 'D', msg: question.D}
+            ];
             shuffleArray(answers);
 
             return {
                 q: question.q,
                 ans: answers,
-                correct: question.ANSWER
+                correct: question.ANSWER,
+                topic: getQuestionTopic(question),
+                id: question.id
             };
         };
 
@@ -137,7 +161,7 @@ angular.module('pplTester.services', [])
             if (answeredQuestions.indexOf(num) !== -1 && randomNum < 0.3
                 || triedQuestions.indexOf(num) !== -1 && randomNum < 0.7) {
 
-                return this.random();
+                return randomQuestion();
 
             } else {
                 return availableQuestions[num];
@@ -157,7 +181,6 @@ angular.module('pplTester.services', [])
                 questionsChanged = false;
                 return availableQuestions[number + 1 % availableQuestions.length];
             },
-
 
             changed: function () {
                 return questionsChanged;
@@ -220,7 +243,7 @@ angular.module('pplTester.services', [])
 
             angular.forEach(quiz.questions, function (question, idx) {
                 var ans = quiz.answers[idx];
-                var correct = ans === undefined ? undefined :  question.correct === ans;
+                var correct = ans === undefined ? undefined : question.correct === ans;
 
                 answersKey.push(correct);
 

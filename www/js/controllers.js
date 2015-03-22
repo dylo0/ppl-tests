@@ -75,10 +75,9 @@ angular.module('pplTester.controllers', [])
                 if (question.ans === learn.question.correct) {
                     learn.correctAnswer = question.msg;
                     learn.checked = true;
-                    return;
                 }
             });
-        }
+        };
 
         learn.nextQuestion = function (declaredAnswer) {
             Questions.updateAnswered(learn.question, declaredAnswer);
@@ -109,7 +108,7 @@ angular.module('pplTester.controllers', [])
         questionCtrl.nextTest = function () {
             questionCtrl.answered = false;
             questionCtrl.choice = {};
-            questionCtrl.test = Questions.randomQuestion();
+            questionCtrl.test = Questions.getRandomQuestion();
         };
 
         $scope.$on("$ionicView.beforeEnter", function () {
