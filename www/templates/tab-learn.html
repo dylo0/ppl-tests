@@ -1,16 +1,16 @@
 <ion-view title="{{'learn' | translate}}">
     <ion-content has-header="true">
         <div class="card">
-            <div class="item item-text-wrap">
-                <div>
+            <div class="item-text-wrap" style="min-height: 40vh">
+                <i class="icon ion-help-circled card-background"></i>
+                <div class="item item-text-wrap transparent">
                     {{learn.question.q}}
                 </div>
             </div>
 
             <div class="item item-divider"></div>
 
-            <div style="min-height: 50vh">
-                <i class="icon ion-help-circled card-background"></i>
+            <div style="min-height: 20vh">
                 <div class="item item-text-wrap transparent" ng-if="learn.checked">
                     {{learn.correctAnswer}}
                 </div>
@@ -29,20 +29,3 @@
         </div>
     </ion-content>
 </ion-view>
-
-
-<style>
-    .transparent {
-        background-color: initial;
-    }
-
-    .card-background {
-        position: absolute;
-        text-align: center;
-        width: 100%;
-        font-size: 250px;
-        color: #f2f2f2;
-        margin-top: 30px;
-    }
-
-</style>

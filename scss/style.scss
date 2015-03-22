@@ -23,3 +23,16 @@ $dark:                            #444 !default;
     background: $assertive;
   }
 }
+
+.transparent {
+  background-color: initial;
+}
+
+.card-background {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  font-size: 30vh;
+  color: #f9f9f9;
+  margin-top: 30px;
+}
