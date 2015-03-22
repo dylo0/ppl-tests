@@ -53,7 +53,7 @@ angular.module('pplTester')
             learn: "Nauka",
             next_question: "Następne pytanie",
             example_questions: "Przykładowe pytania",
-            check: "Sprawdź odpowiedź",
+            check: "Wybierz odpowiedź",
             questions: "Pytania",
             quiz: "Egzamin",
             want_to_end: "Czy chcesz zakończyć egzamin?",
@@ -74,10 +74,10 @@ angular.module('pplTester')
             question: 'Pytanie',
             correct: 'Poprawne',
             incorrect: 'Błędne',
-            preview_your_answers: 'Zobacz odpowiedzi',
+            preview_your_answers: 'Przeglądaj odpowiedzi',
             mark: 'Wybierz',
             confirm: 'Potwierdż',
-            want_to_submit_empty: 'Czy chcesz zgłosić pustą odpowiedź?',
+            want_to_submit_empty: 'Czy chcesz wybrać pustą odpowiedź?',
             no_return: "Nie, powróć",
             yes: "Tak"
         });

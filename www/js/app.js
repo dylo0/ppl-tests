@@ -59,20 +59,59 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
                 url: '/learn',
                 views: {
                     'tab-learn': {
-                        templateUrl: 'templates/tab-learn.html',
-                        controller: 'LearnCtrl'
+                        template: '<ui-view></ui-view>'
+                    }
+                },
+                onEnter: function ($state, Quizzes, $timeout) {
+                    if (Quizzes.isQuizInProgress()) {
+                        $timeout(function () {
+                            $state.go('tab.learn.not-available')
+                        });
+                    } else {
+                        $timeout(function () {
+                            $state.go('tab.learn.question');
+
+                        })
                     }
                 }
+            })
+
+            .state('tab.learn.question', {
+                templateUrl: 'templates/tab-learn.html',
+                controller: 'LearnCtrl'
+            })
+
+            .state('tab.learn.not-available', {
+                templateUrl: 'templates/tab-not-available.html'
             })
 
             .state('tab.questions', {
                 url: '/questions',
                 views: {
                     'tab-questions': {
-                        templateUrl: 'templates/tab-questions.html',
-                        controller: 'QuestionsCtrl as fr'
+                        template: '<ui-view></ui-view>'
+                    }
+                },
+                onEnter: function ($state, Quizzes, $timeout) {
+                    if (Quizzes.isQuizInProgress()) {
+                        $timeout(function () {
+                            $state.go('tab.questions.not-available')
+                        });
+                    } else {
+                        $timeout(function () {
+                            $state.go('tab.questions.question');
+
+                        })
                     }
                 }
+            })
+            .state('tab.questions.question', {
+                templateUrl: 'templates/tab-questions.html',
+                controller: 'QuestionsCtrl as fr'
+            })
+
+            .state('tab.questions.not-available', {
+                templateUrl: 'templates/tab-not-available.html'
             })
 
             .state('tab.quiz', {

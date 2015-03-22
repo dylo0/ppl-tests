@@ -135,7 +135,6 @@ angular.module('pplTester.controllers', [])
         $scope.$on("$ionicView.beforeEnter", function () {
             quiz.current = Quizzes.getCurrentQuiz();
             if (quiz.current.ended && !quiz.current.scoreDisplayed) {
-                console.log('ended');
                 $state.go('tab.quiz-summary');
             }
         });
