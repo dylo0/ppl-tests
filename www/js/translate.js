@@ -34,6 +34,7 @@ angular.module('pplTester')
             question: 'Question',
             correct: 'Correct',
             incorrect: 'Incorrect',
+            no_answer: "Not answered",
             preview_your_answers: 'Preview your answers',
             mark: 'Check',
             confirm: 'Are you sure?',
@@ -42,7 +43,7 @@ angular.module('pplTester')
             yes: "Yes",
             finish_quiz_to_enter: "Please finish current quiz to enter this page",
             access_deined: "Access deined",
-            quiz_in_progress: "Quiz in progress",
+            quiz_in_progress: "Quiz in progress"
 
         });
 
@@ -70,7 +71,6 @@ angular.module('pplTester')
             quiz_details: "Informacje",
             time: "Czas",
             number_of_questions: "Ilość pytań",
-            start_quiz: "Rozpocznij egzamin",
             back: "Powrót",
             score: 'Wynik egzaminu',
             summary: 'Podsumowanie',
@@ -80,6 +80,7 @@ angular.module('pplTester')
             question: 'Pytanie',
             correct: 'Poprawne',
             incorrect: 'Błędne',
+            no_answer: "Brak odpowiedzi",
             preview_your_answers: 'Przeglądaj odpowiedzi',
             mark: 'Wybierz',
             confirm: 'Potwierdż',
@@ -88,7 +89,7 @@ angular.module('pplTester')
             yes: "Tak",
             finish_quiz_to_enter: "Zakończ egzamin aby wejść",
             access_deined: "Brak dostępu",
-            quiz_in_progress: "Egzamin w toku",
+            quiz_in_progress: "Egzamin w toku"
         });
 
     });

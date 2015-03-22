@@ -22,7 +22,7 @@
                 <i class="icon" ng-class="score ? 'ion-ios7-checkmark balanced' : 'ion-ios7-close assertive'"></i>
                 {{ 'question' | translate }} {{ $index + 1 }}
                 <span class="item-note" ng-class="score ? 'balanced' : 'assertive'">
-                  {{ score ? 'correct' : 'incorrect' | translate}}
+                     {{ {true: 'correct',  false: 'incorrect', undefined: 'no_answer'}[score] | translate}}
                 </span>
             </a>
         </div>

@@ -173,7 +173,6 @@ angular.module('pplTester.controllers', [])
         };
 
         quiz.checkAnswer = function (test, choice) {
-            console.log(choice);
             if (angular.equals(choice, {})) {
                 confirmEmpty();
             } else {

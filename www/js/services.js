@@ -216,8 +216,11 @@ angular.module('pplTester.services', [])
         var countScore = function (quiz) {
             correctAnswers = 0;
             answersKey = [];
+
             angular.forEach(quiz.questions, function (question, idx) {
-                var correct = question.correct === quiz.answers[idx];
+                var ans = quiz.answers[idx];
+                var correct = ans === undefined ? undefined :  question.correct === ans;
+
                 answersKey.push(correct);
 
                 if (correct) {
