@@ -59,7 +59,7 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
                 url: '/learn',
                 views: {
                     'tab-learn': {
-                        template: '<ui-view></ui-view>'
+                        template: '<ion-nav-view></ion-nav-view>'
                     }
                 },
                 onEnter: function ($state, Quizzes, $timeout) {
@@ -89,7 +89,7 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
                 url: '/questions',
                 views: {
                     'tab-questions': {
-                        template: '<ui-view></ui-view>'
+                        template: '<ion-nav-view></ion-nav-view>'
                     }
                 },
                 onEnter: function ($state, Quizzes, $timeout) {

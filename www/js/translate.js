@@ -5,6 +5,7 @@ angular.module('pplTester')
             dashboard: "Dashboard",
             dash: "Dash",
             new_quiz: "Start new quiz",
+            Start_quiz: "Start quiz",
             end_quiz: "End quiz",
             statistics: "Statistics",
             quizzes: 'Quizzes',
@@ -38,14 +39,19 @@ angular.module('pplTester')
             confirm: 'Are you sure?',
             want_to_submit_empty: 'Do you want to submit empty answer?',
             no_return: "No, return to question",
-            yes: "Yes"
+            yes: "Yes",
+            finish_quiz_to_enter: "Please finish current quiz to enter this page",
+            access_deined: "Access deined",
+            quiz_in_progress: "Quiz in progress",
+
         });
 
         $translateProvider.translations('pl', {
             learning_resources: "Zbiory pytań",
             dashboard: "Menu",
             dash: "Menu",
-            new_quiz: "Rozpocznij egzamin",
+            new_quiz: "Nowy egzamin",
+            start_quiz: "Rozpocznij egzamin",
             end_quiz: "Zakończ",
             statistics: "Statystyki",
             quizzes: 'Egzaminy',
@@ -64,7 +70,7 @@ angular.module('pplTester')
             quiz_details: "Informacje",
             time: "Czas",
             number_of_questions: "Ilość pytań",
-            start_quiz: "Rozpocznij egzamin!",
+            start_quiz: "Rozpocznij egzamin",
             back: "Powrót",
             score: 'Wynik egzaminu',
             summary: 'Podsumowanie',
@@ -79,7 +85,10 @@ angular.module('pplTester')
             confirm: 'Potwierdż',
             want_to_submit_empty: 'Czy chcesz wybrać pustą odpowiedź?',
             no_return: "Nie, powróć",
-            yes: "Tak"
+            yes: "Tak",
+            finish_quiz_to_enter: "Zakończ egzamin aby wejść",
+            access_deined: "Brak dostępu",
+            quiz_in_progress: "Egzamin w toku",
         });
 
     });

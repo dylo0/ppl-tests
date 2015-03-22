@@ -1,12 +1,11 @@
-<ion-view view-title="{{'example_questions' | translate}}">
+<ion-view view-title="{{'access_deined' | translate}}">
     <ion-content>
-        <div class="item">
-            <h1>Quiz in progress</h1>
-            <h2>Quiz in progress</h2>
+        <div class="card">
+            <div class="item">
+                <h1>{{ 'quiz_in_progress' | translate}}</h1>
+                <h2 class="padding">{{'finish_quiz_to_enter' | translate}}</h2>
+            </div>
         </div>
 
-
-
-        <button ng-if="fr.answered" class="button button-block" ng-click="fr.nextTest()">{{'next_question' | translate}}</button>
     </ion-content>
 </ion-view>
