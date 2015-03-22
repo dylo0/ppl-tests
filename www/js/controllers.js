@@ -126,14 +126,12 @@ angular.module('pplTester.controllers', [])
     .controller('QuizQuestionsCtrl', function ($scope, Quizzes, $state, $stateParams, $translate, $ionicPopup, Questions) {
         var quiz = this;
 
-        quiz.test = '';
-        quiz.choice = {};
-        quiz.current = Quizzes.getCurrentQuiz();
-        quiz.question = Quizzes.getQuizQuestion($stateParams.id);
-        quiz.currentIdx = parseInt($stateParams.id) + 1;
-
         $scope.$on("$ionicView.beforeEnter", function () {
+            quiz.choice = {};
+            quiz.question = Quizzes.getQuizQuestion($stateParams.id);
+            quiz.currentIdx = parseInt($stateParams.id) + 1;
             quiz.current = Quizzes.getCurrentQuiz();
+
             if (quiz.current.ended && !quiz.current.scoreDisplayed) {
                 $state.go('tab.quiz-summary');
             }
@@ -175,6 +173,7 @@ angular.module('pplTester.controllers', [])
         };
 
         quiz.checkAnswer = function (test, choice) {
+            console.log(choice);
             if (angular.equals(choice, {})) {
                 confirmEmpty();
             } else {
