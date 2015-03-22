@@ -60,48 +60,61 @@ angular.module('pplTester.controllers', [])
             $scope.modal.remove();
         });
 
-        $scope.$on("$ionicView.beforeEnter", function () {
+        $scope.$on("$ionicView.enter", function () {
             $scope.quizInProgress = Quizzes.isQuizInProgress();
         });
     })
 
 
     .controller('LearnCtrl', function ($scope, Questions) {
-        $scope.question = Questions.random();
+        var learn = this;
+        learn.question = Questions.getRandomQuestion();
 
-        $scope.nextQuestion = function () {
-            $scope.question = Questions.random();
+        learn.displayCorrect = function() {
+            angular.forEach(learn.question.ans, function( question ) {
+                if (question.ans === learn.question.correct) {
+                    learn.correctAnswer = question.msg;
+                    learn.checked = true;
+                    return;
+                }
+            });
+        }
+
+        learn.nextQuestion = function (declaredAnswer) {
+            Questions.updateAnswered(learn.question, declaredAnswer);
+            learn.checked = false;
+            learn.question = Questions.getRandomQuestion();
         };
 
-        $scope.$on("$ionicView.beforeEnter", function () {
+        $scope.$on("$ionicView.enter", function () {
             if (Questions.changed()) {
-                $scope.nextQuestion();
+                learn.nextQuestion();
             }
         });
     })
 
 
     .controller('QuestionsCtrl', function ($scope, Questions) {
-        var questinCtrl = this;
-        questinCtrl.test = Questions.randomQuestion();
-        questinCtrl.choice = {};
+        var questionCtrl = this;
+        questionCtrl.test = Questions.getRandomQuestion();
+        questionCtrl.choice = {};
 
-        questinCtrl.checkAnswer = function (test, selectedAns) {
-            questinCtrl.answered = true;
-            questinCtrl.correct = this.test.correct === selectedAns;
+        questionCtrl.checkAnswer = function (test, selectedAns) {
+            questionCtrl.answered = true;
+            questionCtrl.correct = this.test.correct === selectedAns;
 
-            Questions.updateAnswered(test, questinCtrl.correct);
+            Questions.updateAnswered(test, questionCtrl.correct);
         };
 
-        questinCtrl.nextTest = function () {
-            questinCtrl.answered = false;
-            questinCtrl.choice = {};
-            questinCtrl.test = Questions.randomQuestion();
+        questionCtrl.nextTest = function () {
+            questionCtrl.answered = false;
+            questionCtrl.choice = {};
+            questionCtrl.test = Questions.randomQuestion();
         };
 
         $scope.$on("$ionicView.beforeEnter", function () {
             if (Questions.changed()) {
-                questinCtrl.test = Questions.randomQuestion();
+                questionCtrl.test = Questions.randomQuestion();
             }
         });
     })

@@ -91,6 +91,7 @@ angular.module('pplTester.services', [])
 
         function prepareQuesitons() {
             availableQuestions = [];
+            console.log('preparing questions');
             questionsChanged = true;
 
             angular.forEach(allTopics, function (topic) {
@@ -128,6 +129,21 @@ angular.module('pplTester.services', [])
             };
         };
 
+        var randomQuestion = function () {
+
+            var num = getRandomArbitary(0, availableQuestions.length);
+            var randomNum = Math.random();
+
+            if (answeredQuestions.indexOf(num) !== -1 && randomNum < 0.3
+                || triedQuestions.indexOf(num) !== -1 && randomNum < 0.7) {
+
+                return this.random();
+
+            } else {
+                return availableQuestions[num];
+            }
+        };
+
         return {
             init: function () {
                 return promise;
@@ -142,29 +158,14 @@ angular.module('pplTester.services', [])
                 return availableQuestions[number + 1 % availableQuestions.length];
             },
 
-            random: function () {
-
-                var num = getRandomArbitary(0, availableQuestions.length);
-                var randomNum = Math.random();
-
-                if (answeredQuestions.indexOf(num) !== -1 && randomNum < 0.3
-                    || triedQuestions.indexOf(num) !== -1 && randomNum < 0.7) {
-
-                    return this.random();
-
-                } else {
-                    return availableQuestions[num];
-                }
-            },
 
             changed: function () {
                 return questionsChanged;
             },
 
-            randomQuestion: function () {
+            getRandomQuestion: function () {
                 questionsChanged = false;
-
-                var randQ = this.random();
+                var randQ = randomQuestion();
                 return prepareQuestion(randQ);
             },
 

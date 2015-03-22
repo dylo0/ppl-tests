@@ -43,7 +43,8 @@ angular.module('pplTester')
             yes: "Yes",
             finish_quiz_to_enter: "Please finish current quiz to enter this page",
             access_deined: "Access deined",
-            quiz_in_progress: "Quiz in progress"
+            quiz_in_progress: "Quiz in progress",
+            display_answer: "Display correct answer"
 
         });
 
@@ -89,7 +90,8 @@ angular.module('pplTester')
             yes: "Tak",
             finish_quiz_to_enter: "Zakończ egzamin aby wejść",
             access_deined: "Brak dostępu",
-            quiz_in_progress: "Egzamin w toku"
+            quiz_in_progress: "Egzamin w toku",
+            display_answer: "Pokaż odpowiedź"
         });
 
     });

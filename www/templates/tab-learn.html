@@ -1,21 +1,48 @@
 <ion-view title="{{'learn' | translate}}">
-    <ion-content has-header="true" >
-        <div class="item item-text-wrap">
-            <div>
-                {{question.q}}
-            </div>
-        </div>
-
-        <div class="item item-divider"></div>
-
-        <div style="min-height: 50vh">
+    <ion-content has-header="true">
+        <div class="card">
             <div class="item item-text-wrap">
-                {{question.A}}
+                <div>
+                    {{learn.question.q}}
+                </div>
+            </div>
+
+            <div class="item item-divider"></div>
+
+            <div style="min-height: 50vh">
+                <i class="icon ion-help-circled card-background"></i>
+                <div class="item item-text-wrap transparent" ng-if="learn.checked">
+                    {{learn.correctAnswer}}
+                </div>
+            </div>
+
+            <div class="row item padding" ng-if="!learn.checked">
+                <button class="button button-block" ng-click="learn.displayCorrect()">
+                    {{'display_answer' | translate}}
+                </button>
+            </div>
+
+            <div class="item row padding" ng-if="learn.checked">
+                <button class="button  col button-assertive" ng-click="learn.nextQuestion(false)">{{'incorrect' | translate}}</button>
+                <button class="button col button-balanced" ng-click="learn.nextQuestion(true)">{{'correct' | translate}}</button>
             </div>
         </div>
-
-        <button class="button button-block" ng-click="nextQuestion()">
-            {{'next_question' | translate}}
-        </button>
     </ion-content>
 </ion-view>
+
+
+<style>
+    .transparent {
+        background-color: initial;
+    }
+
+    .card-background {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        font-size: 250px;
+        color: #f2f2f2;
+        margin-top: 30px;
+    }
+
+</style>

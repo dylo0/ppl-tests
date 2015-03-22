@@ -78,7 +78,7 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
 
             .state('tab.learn.question', {
                 templateUrl: 'templates/tab-learn.html',
-                controller: 'LearnCtrl'
+                controller: 'LearnCtrl as learn'
             })
 
             .state('tab.learn.not-available', {
