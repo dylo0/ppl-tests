@@ -12,40 +12,55 @@
         
         <div class="item item-divider"></div>
 
-        <div style="min-height: 50vh">
-            <ion-radio 
-                class="item-text-wrap"
-                ng-repeat="answer in qq.question.ans"
-                ng-class="{'correct': qq.current.ended && qq.correct, 'incorrect': qq.current.ended && !qq.correct}"
-                ng-model="qq.choice"
-                ng-value="answer.ans"
-                ng-disabled="qq.current.ended">
+        <div ng-if="!qq.current.ended">
+            <div style="min-height: 50vh">
+                <ion-radio 
+                    class="item-text-wrap"
+                    ng-repeat="answer in qq.question.ans"
+                    ng-model="qq.choice"
+                    ng-value="answer.ans">
 
-                <span ng-style="{color: qq.current.ended && !qq.correct && answer.ans === qq.question.correct ? 'red' : 'black'}">
-                    {{answer.msg}} {{answer.ans}} </span>
-            </ion-radio>
+                    <span > {{answer.msg}} {{answer.ans}} </span>
+                </ion-radio>
+            </div>
+
+            <button class="button button-block" 
+                    ng-click="qq.checkAnswer(qq.question, qq.choice)">
+                        {{'mark' | translate}} </button>
         </div>
+        
+        <div ng-if="qq.current.ended"> 
+            <ion-list style="min-height: 50vh" >
+                <ion-item
+                    class="item-icon-right"
+                    ng-class="{'item-balanced': answer.ans === qq.choice && qq.correct, 
+                               'item-assertive': answer.ans === qq.choice && !qq.correct}"
+                    ng-repeat="answer in qq.question.ans">
+                    
+                    <i ng-if="answer.ans === qq.choice && qq.correct" class="icon ion-checkmark"></i>
+                    <i ng-if="answer.ans === qq.choice && !qq.correct" class="icon ion-close"></i>
+                    
+                    <span ng-style="{color: !qq.correct && answer.ans === qq.question.correct ? 'red' : 'black'}">
+                        {{answer.msg}} {{answer.ans}}</span>
+                </ion-item>
+            </ion-list>
 
-        <button ng-if="!qq.current.ended" 
-            class="button button-block" 
-            ng-click="qq.checkAnswer(qq.question, qq.choice)">
-                {{'mark' | translate}} </button>
+            <div class="row">
+                <a  class="button col" 
+                    ng-href="#/tab/quiz/{{qq.currentIdx - 1}}" 
+                    ng-disabled="qq.currentIdx === 0"> 
+                        {{'previous' | translate}} </a>
 
-        <div ng-show="qq.current.ended" class="row">
-            <a  class="button col" 
-                ng-href="#/tab/quiz/{{qq.currentIdx - 1}}" 
-                ng-disabled="qq.currentIdx === 0"> 
-                    {{'previous' | translate}} </a>
+                <a  class="button col" 
+                    ng-href="#/tab/quiz/{{qq.currentIdx + 1}}" 
+                    ng-disabled="qq.currentIdx === qq.current.count - 1">
+                        {{'next' | translate}} </a>
+            </div>
 
-            <a  ng-if="qq.current.ended" 
-                class="button col" 
-                ng-href="#/tab/quiz/{{qq.currentIdx + 1}}" 
-                ng-disabled="qq.currentIdx === qq.current.count - 1">
-                    {{'next' | translate}} </a>
+            <a class="button button-light button-block" ng-href="#/tab/quiz/summary">
+                {{'back_to_summary' | translate}}
+            </a>
+
         </div>
-
-        <a ng-show="qq.current.ended" class="button button-light button-block" ng-href="#/tab/quiz/summary">
-            {{'back_to_summary' | translate}}
-        </a>
     </ion-content>
 </ion-view>
