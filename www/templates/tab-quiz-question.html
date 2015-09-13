@@ -30,21 +30,22 @@
         </div>
         
         <div ng-if="qq.current.ended"> 
-            <ion-list style="min-height: 50vh" >
-                <ion-item
-                    class="item-icon-right"
-                    ng-class="{'item-balanced': answer.ans === qq.choice && qq.correct, 
-                               'item-assertive': answer.ans === qq.choice && !qq.correct}"
-                    ng-repeat="answer in qq.question.ans">
-                    
-                    <i ng-if="answer.ans === qq.choice && qq.correct" class="icon ion-checkmark"></i>
-                    <i ng-if="answer.ans === qq.choice && !qq.correct" class="icon ion-close"></i>
-                    
-                    <span ng-style="{color: !qq.correct && answer.ans === qq.question.correct ? 'red' : 'black'}">
-                        {{answer.msg}} {{answer.ans}}</span>
-                </ion-item>
-            </ion-list>
-
+            <div style="min-height: 50vh">
+                <ion-list>
+                    <ion-item
+                        class="item-icon-right"
+                        ng-class="{'item-balanced': answer.ans === qq.choice && qq.correct, 
+                                   'item-assertive': answer.ans === qq.choice && !qq.correct}"
+                        ng-repeat="answer in qq.question.ans">
+                        
+                        <i ng-if="answer.ans === qq.choice && qq.correct" class="icon ion-checkmark"></i>
+                        <i ng-if="answer.ans === qq.choice && !qq.correct" class="icon ion-close"></i>
+                        
+                        <span ng-style="{color: !qq.correct && answer.ans === qq.question.correct ? 'red' : 'black'}">
+                            {{answer.msg}} {{answer.ans}}</span>
+                    </ion-item>
+                </ion-list>
+            </div>
             <div class="row">
                 <a  class="button col" 
                     ng-href="#/tab/quiz/{{qq.currentIdx - 1}}" 
