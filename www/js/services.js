@@ -102,7 +102,6 @@ angular.module('pplTester.services', [])
 
         function prepareQuesitons() {
             availableQuestions = [];
-            console.log('preparing questions');
             questionsChanged = true;
 
             angular.forEach(allTopics, function (topic) {

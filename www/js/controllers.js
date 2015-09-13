@@ -102,6 +102,7 @@ angular.module('pplTester.controllers', [])
             questionCtrl.answered = true;
             questionCtrl.correct = this.test.correct === selectedAns;
 
+            console.log(selectedAns);
             Questions.updateAnswered(test, questionCtrl.correct);
         };
 
@@ -141,11 +142,20 @@ angular.module('pplTester.controllers', [])
         $scope.$on("$ionicView.beforeEnter", function () {
             quiz.choice = {};
             quiz.question = Quizzes.getQuizQuestion($stateParams.id);
-            quiz.currentIdx = parseInt($stateParams.id) + 1;
+            quiz.currentIdx = parseInt($stateParams.id);
             quiz.current = Quizzes.getCurrentQuiz();
 
-            if (quiz.current.ended && !quiz.current.scoreDisplayed) {
-                $state.go('tab.quiz-summary');
+            if (quiz.current.ended) {
+                if (!quiz.current.scoreDisplayed) {
+                    $state.go('tab.quiz-summary');
+
+                } else {
+                    quiz.choice = quiz.current.answers[parseInt($stateParams.id)];
+                    quiz.correct = quiz.current.score.key[parseInt($stateParams.id)];
+                    console.log('choice', quiz.choice);
+                    console.log('correct', quiz.correct);
+                    console.log('quiz', quiz);
+                }
             }
         });
 
