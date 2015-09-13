@@ -20,7 +20,7 @@
                     ng-model="qq.choice"
                     ng-value="answer.ans">
 
-                    <span > {{answer.msg}} {{answer.ans}} </span>
+                    <span > {{answer.msg}} </span>
                 </ion-radio>
             </div>
 
@@ -42,7 +42,7 @@
                         <i ng-if="answer.ans === qq.choice && !qq.correct" class="icon ion-close"></i>
                         
                         <span ng-style="{color: !qq.correct && answer.ans === qq.question.correct ? 'red' : 'black'}">
-                            {{answer.msg}} {{answer.ans}}</span>
+                            {{answer.msg}} </span>
                     </ion-item>
                 </ion-list>
             </div>

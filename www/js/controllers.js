@@ -152,9 +152,6 @@ angular.module('pplTester.controllers', [])
                 } else {
                     quiz.choice = quiz.current.answers[parseInt($stateParams.id)];
                     quiz.correct = quiz.current.score.key[parseInt($stateParams.id)];
-                    console.log('choice', quiz.choice);
-                    console.log('correct', quiz.correct);
-                    console.log('quiz', quiz);
                 }
             }
         });
@@ -192,7 +189,7 @@ angular.module('pplTester.controllers', [])
                         }
                     });
                 });
-        };
+        }; 
 
         quiz.checkAnswer = function (test, choice) {
             if (angular.equals(choice, {})) {
@@ -205,8 +202,10 @@ angular.module('pplTester.controllers', [])
 
     .controller('QuizSummaryCtrl', function ($scope, Questions, Quizzes) {
         this.quiz = Quizzes.getCurrentQuiz();
-
-        $scope.$on("$ionicView.enter", function () {
+        
+        $scope.$on("$ionicView.beforeEnter", function () { 
+            console.log('entering summary');
+            
             Quizzes.summaryShown();
         });
     });

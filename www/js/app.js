@@ -115,6 +115,7 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
             })
 
             .state('tab.quiz', {
+                cache: false,
                 url: '/quiz',
                 views: {
                     'tab-quiz': {
@@ -125,6 +126,7 @@ angular.module('pplTester', ['ionic', 'pplTester.controllers', 'pplTester.servic
                 }
             })
             .state('tab.quiz-summary', {
+                cache: false,
                 url: '/quiz/summary',
                 views: {
                     'tab-quiz': {

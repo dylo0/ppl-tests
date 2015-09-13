@@ -1,9 +1,12 @@
 <ion-view view-title="{{ 'choose_quiz_topic' | translate }}">
     <ion-content>
 
-        <ion-radio class="item-text-wrap" ng-repeat="topic in qz.topics" ng-model="qz.choosenTopic" ng-value="topic"
-                   ng-change="qz.scrollBottom()"> {{topic.title}}
-        </ion-radio>
+        <ion-radio class="item-text-wrap" 
+            ng-repeat="topic in qz.topics" 
+            ng-model="qz.choosenTopic" 
+            ng-value="topic"
+            ng-change="qz.scrollBottom()"> 
+                {{topic.title}} </ion-radio>
 
         <div class="card" ng-if="qz.choosenTopic.name">
 
@@ -33,9 +36,9 @@
             </ion-item>
 
             <ion-item>
-                <button class="button button-positive button-block" ng-click="qz.startQuiz(qz.choosenTopic)">
-                    {{ 'start_quiz' | translate }}
-                </button>
+                <button class="button button-positive button-block" 
+                    ng-click="qz.startQuiz(qz.choosenTopic)">
+                        {{ 'start_quiz' | translate }} </button>
             </ion-item>
         </div>
     </ion-content>
