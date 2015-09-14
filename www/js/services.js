@@ -223,7 +223,7 @@ angular.module('pplTester.services', [])
         }
     })
 
-    .factory('Quizzes', function (Questions, $timeout) {
+    .factory('Quizzes', function (Questions, $timeout, $interval, $ionicPopup, $state, $translate) {
         var currentQuiz = {
             ended: false,
             currentQuestion: 4,
@@ -265,19 +265,17 @@ angular.module('pplTester.services', [])
             },
 
             endQuiz: function () {
+                if (endTimeout) {
+                    $interval.cancel(endTimeout);
+                }
+
                 currentQuiz.ended = true;
                 quizInProgress = false;
                 currentQuiz.score = countScore(currentQuiz);
             },
 
             startNewQuiz: function (quiz) {
-                if (endTimeout) {
-                    $timeout.cancel(endTimeout);
-                }
-
-                endTimeout = $timeout(function () {
-                    endQuiz();
-                }, quiz.time * 60000);
+                var that = this;
 
                 currentQuiz = {
                     title: quiz.title,
@@ -286,8 +284,33 @@ angular.module('pplTester.services', [])
                     questions: Questions.getQuestions(quiz.name, quiz.count),
                     answers: [],
                     scoreDisplayed: false,
-                    ended: false
+                    ended: false,
+                    timeLeft: quiz.time * 1000 * 60,
+                    time: quiz.time
                 };
+
+                endTimeout = $interval(function () {
+                    currentQuiz.timeLeft = currentQuiz.timeLeft - 1000;
+
+                    if (currentQuiz.timeLeft <= 0) {
+                        $interval.cancel(endTimeout);   
+                        that.endQuiz();
+                        
+                        $translate(['quiz_ended', 'max_time_reached'])
+                        .then(function (translations) {
+                            var alertPopup = $ionicPopup.alert({
+                                title: translations['quiz_ended'],
+                                template: translations['max_time_reached']
+                            });
+                            
+                            alertPopup.then(function(res) {
+                                $state.go('tab.quiz-summary');
+                            });
+                        });
+                    }
+
+
+                }, 1000);
 
                 quizInProgress = true;
             },

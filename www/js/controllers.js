@@ -102,7 +102,6 @@ angular.module('pplTester.controllers', [])
             questionCtrl.answered = true;
             questionCtrl.correct = this.test.correct === selectedAns;
 
-            console.log(selectedAns);
             Questions.updateAnswered(test, questionCtrl.correct);
         };
 
@@ -144,7 +143,7 @@ angular.module('pplTester.controllers', [])
             quiz.question = Quizzes.getQuizQuestion($stateParams.id);
             quiz.currentIdx = parseInt($stateParams.id);
             quiz.current = Quizzes.getCurrentQuiz();
-
+        
             if (quiz.current.ended) {
                 if (!quiz.current.scoreDisplayed) {
                     $state.go('tab.quiz-summary');
@@ -202,10 +201,10 @@ angular.module('pplTester.controllers', [])
 
     .controller('QuizSummaryCtrl', function ($scope, Questions, Quizzes) {
         this.quiz = Quizzes.getCurrentQuiz();
-        
+        this.allowedTime = parseInt(this.quiz.time) * 60 * 1000;
+        this.quizTime = this.allowedTime - this.quiz.timeLeft;
+
         $scope.$on("$ionicView.beforeEnter", function () { 
-            console.log('entering summary');
-            
             Quizzes.summaryShown();
         });
     });

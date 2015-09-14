@@ -1,7 +1,7 @@
 <ion-view>
     <ion-nav-title>
         {{qq.current.title}}
-        <span style="float:left;color:#bbb">30:00</span>
+        <span style="float:left;color:#bbb">{{qq.current.timeLeft | date : 'mm:ss'}}</span>
         <span style="float:right;color:#bbb"> [{{qq.currentIdx + 1}}/{{qq.current.count}}]</span>
     </ion-nav-title>
 

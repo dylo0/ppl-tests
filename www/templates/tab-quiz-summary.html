@@ -1,6 +1,20 @@
 <ion-view view-title="{{ 'summary' | translate }}">
     <ion-content>
         <ion-item class="item-divider">
+            {{ 'your_time' | translate }}
+        </ion-item>
+
+        <ion-item class="item-icon-left">   
+            {{ 'total_quiz_time' | translate }}
+            
+            <i class="icon ion-ios-clock-outline small"></i>
+
+            <span class="item-note">
+                {{qs.quizTime | date : 'mm:ss'}} / {{qs.allowedTime | date : 'mm:ss'}}
+            </span>
+        </ion-item>
+
+        <ion-item class="item-divider">
             {{ 'score' | translate }}
         </ion-item>
 

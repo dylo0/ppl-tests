@@ -44,7 +44,11 @@ angular.module('pplTester')
             finish_quiz_to_enter: "Please finish current quiz to enter this page",
             access_deined: "Access deined",
             quiz_in_progress: "Quiz in progress",
-            display_answer: "Display correct answer"
+            display_answer: "Display correct answer",
+            quiz_ended: 'Quiz ended',
+            max_time_reached: 'Maximum quiz time reached',
+            total_quiz_time: 'Total quiz time',
+            your_time: 'Your quiz time'
 
         });
 
@@ -91,7 +95,11 @@ angular.module('pplTester')
             finish_quiz_to_enter: "Zakończ egzamin aby wejść",
             access_deined: "Brak dostępu",
             quiz_in_progress: "Egzamin w toku",
-            display_answer: "Pokaż odpowiedź"
+            display_answer: "Pokaż odpowiedź",
+            quiz_ended: 'Egazmin zakończony',
+            max_time_reached: 'Upłynął dozwolony czas egzaminu',
+            total_quiz_time: 'Czas egzaminu',
+            your_time: 'Twój czas'
         });
 
     });
