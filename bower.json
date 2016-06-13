@@ -4,7 +4,11 @@
   "devDependencies": {
     "ionic": ""
   },
+  "resolutions": {
+	"angular": "1.*.*"
+  },
   "dependencies": {
+  	"angular": "^1.*.*",
     "angular-translate": "~2.6.1"
   }
 }
